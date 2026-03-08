@@ -51,5 +51,6 @@ volumes:
   bot_drafts:
 
 networks:
+  default:
   shared-net:
     external: true
