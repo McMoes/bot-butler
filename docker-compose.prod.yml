@@ -26,6 +26,9 @@ services:
       - db
     env_file:
       - .env
+    networks:
+      - default
+      - shared-net
 
   nginx:
     image: nginx:1.25-alpine
@@ -38,9 +41,16 @@ services:
       - media_volume:/app/media
     depends_on:
       - web
+    networks:
+      - default
+      - shared-net
 
 volumes:
   postgres_data:
   static_volume:
   media_volume:
   bot_drafts:
+
+networks:
+  shared-net:
+    external: true
