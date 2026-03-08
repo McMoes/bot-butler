@@ -1,0 +1,7 @@
+.env
+*.pyc
+__pycache__/
+media/
+staticfiles/
+db.sqlite3
+bot_drafts/

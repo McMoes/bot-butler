@@ -1,0 +1,73 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Bot Butler | Premium AI Bot Development{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Automate your business workflows with Bot Butler. Our AI-driven Bot-as-a-Service model builds custom Telegram, Discord, and trading bots instantly.{% endblock %}">
+    <meta name="keywords" content="Bot as a Service, Telegram Bot, Custom Bot Development, Discord Bot, AI Bot Builder">
+    
+    <!-- Modern Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/css/flag-icons.min.css"/>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body class="dark-theme">
+    <!-- Navbar -->
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <a href="/" class="brand-logo">
+                <span class="gradient-text">Bot</span>Butler<span class="dot">.</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features">{% trans "Features" %}</a>
+                <a href="#builder">{% trans "Build Your Bot" %}</a>
+                <div class="lang-switch">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% for lang in LANGUAGES %}
+                        {% if lang.0 != LANGUAGE_CODE %}
+                            <a href="/{{ lang.0 }}/" class="lang-btn">
+                                {% if lang.0 == 'de' %}
+                                <span class="fi fi-de" style="margin-right:0.5rem;"></span> DE
+                                {% elif lang.0 == 'en' %}
+                                <span class="fi fi-gb" style="margin-right:0.5rem;"></span> EN
+                                {% else %}
+                                {{ lang.0|upper }}
+                                {% endif %}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-footer">
+        <div class="footer-container">
+            <div class="brand-info">
+                <h3>Bot Butler.</h3>
+                <p>{% trans "Premium Bot-as-a-Service architecture powered by AI." %}</p>
+            </div>
+            <div class="legal-links">
+                <a href="#">{% trans "Privacy Policy" %}</a>
+                <a href="#">{% trans "Terms of Service" %}</a>
+            </div>
+        </div>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

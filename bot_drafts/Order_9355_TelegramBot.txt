@@ -1,0 +1,14 @@
+--- BOT BUTLER REQUIREMENTS ---
+Order ID: Order_9355_TelegramBot
+Category: Telegram Bot
+Consulting Requested: YES
+Total Price: 349.0 EUR
+Contact: McMoe
+
+--- AI GENERATED JSON SPECIFICATION ---
+{
+    "test": "Successful Connection"
+}
+
+--- INSTRUCTIONS FOR ANTIGRAVITY IDE ---
+Please create a fully functioning Telegram Bot based on the specification above. Ensure it connects properly and is ready for production deployment.
