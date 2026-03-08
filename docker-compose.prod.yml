@@ -28,7 +28,6 @@ services:
       - .env
     networks:
       - default
-      - shared-net
 
   nginx:
     image: nginx:1.25-alpine
