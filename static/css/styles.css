@@ -294,9 +294,9 @@ body {
     box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
 }
 
-.btn-primary {
+.btn-primary, .nav-links a.btn-primary {
     background: var(--gradient-text);
-    color: white;
+    color: #ffffff !important;
     border: none;
     padding: 1rem 2rem;
     border-radius: 12px;
@@ -306,9 +306,29 @@ body {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .nav-links a.btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+    color: #ffffff !important;
+}
+
+.btn-outline, .nav-links a.btn-outline {
+    background: transparent;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-subtle);
+    padding: 0.5rem 1.2rem;
+    border-radius: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover, .nav-links a.btn-outline:hover {
+    border-color: var(--brand-secondary);
+    background: rgba(6, 182, 212, 0.05);
+    transform: translateY(-2px);
+    color: var(--text-primary) !important;
 }
 
 /* Options / Categories Grid */
