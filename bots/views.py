@@ -135,6 +135,27 @@ class ToggleBotStatusView(LoginRequiredMixin, View):
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
 
+@method_decorator(csrf_exempt, name='dispatch')
+class BotBuilderChatView(View):
+    def post(self, request, *args, **kwargs):
+        try:
+            data = json.loads(request.body)
+            category_id = data.get('category_id')
+            history = data.get('history', [])
+            
+            if not category_id or not history:
+                return JsonResponse({'error': 'Invalid data'}, status=400)
+                
+            category = BotCategory.objects.get(pk=category_id)
+            from .ai_utils import get_sales_chat_response
+            ai_reply = get_sales_chat_response(history, category.name, category.base_price)
+            
+            return JsonResponse({'success': True, 'reply': ai_reply})
+        except BotCategory.DoesNotExist:
+            return JsonResponse({'error': 'Category not found'}, status=404)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+
 class BotAdjustmentView(LoginRequiredMixin, View):
     def post(self, request, order_id, *args, **kwargs):
         try:
@@ -144,9 +165,24 @@ class BotAdjustmentView(LoginRequiredMixin, View):
                 return JsonResponse({'error': 'Message required'}, status=400)
                 
             order = Order.objects.get(order_id=order_id, user=request.user)
+            # Save user message
             BotAdjustment.objects.create(order=order, message=message, is_from_user=True)
-            return JsonResponse({'success': True})
+            
+            # Fetch history
+            history = []
+            for adj in order.adjustments.all().order_by('created_at'):
+                role = "user" if adj.is_from_user else "model"
+                history.append({"role": role, "parts": [adj.message]})
+                
+            from .ai_utils import get_upsell_chat_response
+            ai_reply = get_upsell_chat_response(history, order)
+            
+            # Save AI reply
+            BotAdjustment.objects.create(order=order, message=ai_reply, is_from_user=False)
+            
+            return JsonResponse({'success': True, 'reply': ai_reply})
         except Order.DoesNotExist:
             return JsonResponse({'error': 'Order not found'}, status=404)
         except Exception as e:
+            import traceback; traceback.print_exc()
             return JsonResponse({'error': str(e)}, status=500)

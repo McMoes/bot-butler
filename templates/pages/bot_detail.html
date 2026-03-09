@@ -145,9 +145,8 @@
             input.disabled = false;
             input.focus();
             if(data.success) {
-                // optionally we could append a default AI message saying "We received your request"
                 const aiHtml = `<div class="chat-message message-ai">
-                    <strong>Bot Butler AI:</strong> {% trans "We've received your adjustment request. Our Support Team will review it and follow up shortly!" %}
+                    <strong>Support Team:</strong> ${data.reply}
                 </div>`;
                 chat.insertAdjacentHTML('beforeend', aiHtml);
                 chat.scrollTop = chat.scrollHeight;

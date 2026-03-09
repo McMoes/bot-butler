@@ -22,8 +22,11 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-default')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1,bot-butler.ai,www.bot-butler.ai,81.169.178.112').split(',')
+ALLOWED_HOSTS = ['bot-butler.ai', 'www.bot-butler.ai', 'localhost', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ['https://bot-butler.ai', 'https://www.bot-butler.ai', 'http://81.169.178.112']
+
+GEMINI_API_KEY_SALES = os.environ.get('GEMINI_API_KEY_SALES', '')
+GEMINI_API_KEY_UPSELL = os.environ.get('GEMINI_API_KEY_UPSELL', '')
 
 # Application definition
 INSTALLED_APPS = [
