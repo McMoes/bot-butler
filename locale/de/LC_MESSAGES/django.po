@@ -136,8 +136,11 @@ msgstr "Sofortiges Setup"
 
 #: templates/pages/index.html:19
 msgid ""
-"Deploy your custom bot via our Bot-as-a-Service model in minutes, not months."
-msgstr "Deploye deinen maßgeschneiderten Bot über unser Bot-as-a-Service Modell in Minuten, nicht Monaten."
+"Deploy your custom bot via our Bot-as-a-Service model in minutes, not "
+"months."
+msgstr ""
+"Deploye deinen maßgeschneiderten Bot über unser Bot-as-a-Service Modell in "
+"Minuten, nicht Monaten."
 
 #: templates/pages/index.html:23
 msgid "AI-Powered Logic"
@@ -147,7 +150,9 @@ msgstr "KI-Gestützte Logik"
 msgid ""
 "Advanced language models integrated directly into your workflows for "
 "intelligent automation."
-msgstr "Fortschrittliche Sprachmodelle direkt in deine Workflows integriert für intelligente Automatisierung."
+msgstr ""
+"Fortschrittliche Sprachmodelle direkt in deine Workflows integriert für "
+"intelligente Automatisierung."
 
 #: templates/pages/index.html:28
 msgid "Multi-Platform"
@@ -157,7 +162,9 @@ msgstr "Multi-Plattform"
 msgid ""
 "Native support for Telegram, Discord, and Web out of the box. Reach your "
 "users anywhere."
-msgstr "Native Unterstützung für Telegram, Discord und Web direkt integriert. Erreiche deine Nutzer überall."
+msgstr ""
+"Native Unterstützung für Telegram, Discord und Web direkt integriert. "
+"Erreiche deine Nutzer überall."
 
 #: templates/pages/index.html:38
 msgid "AI Bot Architect"
@@ -168,8 +175,8 @@ msgid ""
 "Hello! To get started, please select the type of automation bot you're "
 "looking for."
 msgstr ""
-"Hallo! Um zu beginnen, wähle bitte die Art des Automatisierungs-Bots, den du "
-"suchst."
+"Hallo! Um zu beginnen, wähle bitte die Art des Automatisierungs-Bots, den du"
+" suchst."
 
 #: templates/pages/index.html:74
 msgid "Describe your bot requirements..."
@@ -238,8 +245,8 @@ msgstr ""
 
 #: venv/Lib/site-packages/django/core/validators.py:267
 msgid ""
-"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
-"hyphens."
+"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or"
+" hyphens."
 msgstr ""
 
 #: venv/Lib/site-packages/django/core/validators.py:279
@@ -452,8 +459,8 @@ msgstr ""
 #: venv/Lib/site-packages/django/db/models/fields/__init__.py:1558
 #, python-format
 msgid ""
-"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
-"[TZ]) but it is an invalid date/time."
+"“%(value)s” value has the correct format (YYYY-MM-DD "
+"HH:MM[:ss[.uuuuuu]][TZ]) but it is an invalid date/time."
 msgstr ""
 
 #: venv/Lib/site-packages/django/db/models/fields/__init__.py:1563
@@ -632,7 +639,8 @@ msgid "Many-to-many relationship"
 msgstr ""
 
 #. Translators: If found as last label character, these punctuation
-#. characters will prevent the default label_suffix to be appended to the label
+#. characters will prevent the default label_suffix to be appended to the
+#. label
 #: venv/Lib/site-packages/django/forms/boundfield.py:185
 msgid ":?.!"
 msgstr ""
@@ -682,7 +690,8 @@ msgstr ""
 
 #: venv/Lib/site-packages/django/forms/fields.py:633
 #, python-format
-msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
+msgid ""
+"Ensure this filename has at most %(max)d character (it has %(length)d)."
 msgid_plural ""
 "Ensure this filename has at most %(max)d characters (it has %(length)d)."
 msgstr[0] ""
@@ -789,7 +798,8 @@ msgid "The inline value did not match the parent instance."
 msgstr ""
 
 #: venv/Lib/site-packages/django/forms/models.py:1448
-msgid "Select a valid choice. That choice is not one of the available choices."
+msgid ""
+"Select a valid choice. That choice is not one of the available choices."
 msgstr ""
 
 #: venv/Lib/site-packages/django/forms/models.py:1587
@@ -1249,10 +1259,10 @@ msgstr ""
 
 #: venv/Lib/site-packages/django/views/csrf.py:45
 msgid ""
-"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
-"including the “Referrer-Policy: no-referrer” header, please remove them. The "
-"CSRF protection requires the “Referer” header to do strict referer checking. "
-"If you’re concerned about privacy, use alternatives like <a "
+"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or"
+" including the “Referrer-Policy: no-referrer” header, please remove them. "
+"The CSRF protection requires the “Referer” header to do strict referer "
+"checking. If you’re concerned about privacy, use alternatives like <a "
 "rel=\"noreferrer\" …> for links to third-party sites."
 msgstr ""
 
@@ -1363,10 +1373,10 @@ msgstr ""
 #: venv/Lib/site-packages/django/views/templates/default_urlconf.html:221
 #, python-format
 msgid ""
-"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
-"%(version)s/ref/settings/#debug\" target=\"_blank\" "
-"rel=\"noopener\">DEBUG=True</a> is in your settings file and you have not "
-"configured any URLs."
+"You are seeing this page because <a "
+"href=\"https://docs.djangoproject.com/en/%(version)s/ref/settings/#debug\" "
+"target=\"_blank\" rel=\"noopener\">DEBUG=True</a> is in your settings file "
+"and you have not configured any URLs."
 msgstr ""
 
 #: venv/Lib/site-packages/django/views/templates/default_urlconf.html:229
@@ -1392,3 +1402,39 @@ msgstr ""
 #: venv/Lib/site-packages/django/views/templates/default_urlconf.html:248
 msgid "Connect, get help, or contribute"
 msgstr ""
+
+msgid "Login - Bot Butler"
+msgstr "Anmelden - Bot Butler"
+
+msgid "Welcome Back"
+msgstr "Willkommen zur?ck"
+
+msgid "Login"
+msgstr "Anmelden"
+
+msgid "Don't have an account?"
+msgstr "Noch kein Konto?"
+
+msgid "Register here"
+msgstr "Hier registrieren"
+
+msgid "Register - Bot Butler"
+msgstr "Registrieren - Bot Butler"
+
+msgid "Create an Account"
+msgstr "Konto erstellen"
+
+msgid "Register"
+msgstr "Registrieren"
+
+msgid "Already have an account?"
+msgstr "Bereits ein Konto?"
+
+msgid "Login here"
+msgstr "Hier anmelden"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Logout"
+msgstr "Abmelden"

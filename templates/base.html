@@ -25,8 +25,22 @@
                 <span class="gradient-text">Bot</span>Butler<span class="dot">.</span>
             </a>
             <div class="nav-links">
-                <a href="#features">{% trans "Features" %}</a>
-                <a href="#builder">{% trans "Build Your Bot" %}</a>
+                <a href="/#features">{% trans "Features" %}</a>
+                <a href="/#builder">{% trans "Build Your Bot" %}</a>
+                
+                {% if user.is_authenticated %}
+                <div style="display: flex; align-items: center; margin-left: 2rem;">
+                    <a href="/" style="margin-left: 0; margin-right: 1.5rem; color: var(--brand-secondary);">{{ user.username }}</a>
+                    <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="lang-btn" style="border-color: rgba(239, 68, 68, 0.4); padding: 0.4rem 1rem; color: #ef4444;">{% trans "Logout" %}</button>
+                    </form>
+                </div>
+                {% else %}
+                <a href="{% url 'login' %}">{% trans "Login" %}</a>
+                <a href="{% url 'pages:register' %}" class="btn-primary" style="margin-left: 1.5rem; padding: 0.5rem 1.2rem; font-size: 0.9rem;">{% trans "Register" %}</a>
+                {% endif %}
+                
                 <div class="lang-switch">
                     {% get_current_language as LANGUAGE_CODE %}
                     {% get_available_languages as LANGUAGES %}

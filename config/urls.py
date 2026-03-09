@@ -14,6 +14,7 @@ urlpatterns = [
 
 urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
+    path('auth/', include('django.contrib.auth.urls')),
     path('api/bots/', include('bots.urls')),
     path('', include('pages.urls')),
 )

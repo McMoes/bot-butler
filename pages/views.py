@@ -1,4 +1,6 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
 from bots.models import BotCategory
 
 class IndexView(TemplateView):
@@ -9,3 +11,8 @@ class IndexView(TemplateView):
         # Fetch only active categories
         context['categories'] = BotCategory.objects.filter(is_active=True)
         return context
+
+class RegisterView(CreateView):
+    form_class = UserCreationForm
+    template_name = 'registration/register.html'
+    success_url = reverse_lazy('login')

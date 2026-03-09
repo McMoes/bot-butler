@@ -166,3 +166,7 @@ STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', 'whsec_placehold
 
 BOT_DRAFTS_DIR = os.environ.get('BOT_DRAFTS_DIR', str(BASE_DIR / 'bot_drafts'))
 os.makedirs(BOT_DRAFTS_DIR, exist_ok=True)
+
+# Authentication Redirects
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

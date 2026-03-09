@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Login - Bot Butler" %}{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="glass-card auth-card">
+        <h2>{% trans "Welcome Back" %}</h2>
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-primary">{% trans "Login" %}</button>
+        </form>
+        <div class="auth-footer">
+            {% trans "Don't have an account?" %} 
+            <a href="{% url 'pages:register' %}">{% trans "Register here" %}</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
