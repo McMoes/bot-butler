@@ -31,6 +31,11 @@
             
             <div style="margin-bottom: 1.5rem;">
                 <p style="color: var(--text-primary); margin-bottom: 0.5rem;"><strong>{% trans "Price:" %}</strong> {{ bot.total_price }}€</p>
+                {% if bot.is_hosted %}
+                    <p style="color: var(--text-primary); margin-bottom: 0.5rem;"><strong>{% trans "Hosting:" %}</strong> {{ bot.monthly_fee }}€/mo</p>
+                {% else %}
+                    <p style="color: var(--text-primary); margin-bottom: 0.5rem;"><strong>{% trans "Hosting:" %}</strong> {% trans "Self-Hosted (Code Only)" %}</p>
+                {% endif %}
                 <p style="color: var(--text-secondary); font-size: 0.9rem;"><strong>{% trans "Ordered:" %}</strong> {{ bot.created_at|date:"d. M Y" }}</p>
             </div>
             

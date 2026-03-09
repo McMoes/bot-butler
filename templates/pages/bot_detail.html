@@ -12,25 +12,48 @@
     <div class="glass-card" style="padding: 2rem; height: fit-content;">
         <h3 style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.5rem;">{% trans "Bot Settings" %}</h3>
         
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem;">
             <div>
                 <strong style="display: block; margin-bottom: 0.2rem;">{% trans "Status" %}</strong>
                 <span id="status-text" style="color: var(--text-secondary); font-size: 0.9rem;">
                     {% if bot.status == 'delivered' %}
-                        {% if bot.is_active %}{% trans "Active & Listening" %}{% else %}{% trans "Paused" %}{% endif %}
+                        {% if bot.is_hosted %}
+                            {% if bot.is_active %}{% trans "Active & Listening" %}{% else %}{% trans "Paused" %}{% endif %}
+                        {% else %}
+                            {% trans "Code Delivered" %}
+                        {% endif %}
                     {% else %}
                         {{ bot.get_status_display }}
                     {% endif %}
                 </span>
+                
+                <div style="margin-top: 1rem;">
+                    <strong style="display: block; margin-bottom: 0.2rem;">{% trans "Hosting Model" %}</strong>
+                    <span style="color: var(--text-secondary); font-size: 0.9rem;">
+                        {% if bot.is_hosted %}
+                            {% trans "Managed Hosting" %} ({{ bot.monthly_fee }}€/mo)
+                        {% else %}
+                            {% trans "Self-Hosted (Code Only)" %}
+                        {% endif %}
+                    </span>
+                </div>
             </div>
             
             {% if bot.status == 'delivered' %}
-            <label class="switch" style="position: relative; display: inline-block; width: 60px; height: 34px;">
-                <input type="checkbox" id="bot-toggle" {% if bot.is_active %}checked{% endif %} onchange="toggleBotStatus()" style="opacity: 0; width: 0; height: 0;">
-                <span class="slider round" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: {% if bot.is_active %}#2dd4bf{% else %}#4b5563{% endif %}; transition: .4s; border-radius: 34px;">
-                    <span style="position: absolute; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; transform: {% if bot.is_active %}translateX(26px){% else %}translateX(0){% endif %};"></span>
-                </span>
-            </label>
+                {% if bot.is_hosted %}
+                <label class="switch" style="position: relative; display: inline-block; width: 60px; height: 34px;">
+                    <input type="checkbox" id="bot-toggle" {% if bot.is_active %}checked{% endif %} onchange="toggleBotStatus()" style="opacity: 0; width: 0; height: 0;">
+                    <span class="slider round" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: {% if bot.is_active %}#2dd4bf{% else %}#4b5563{% endif %}; transition: .4s; border-radius: 34px;">
+                        <span style="position: absolute; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; transform: {% if bot.is_active %}translateX(26px){% else %}translateX(0){% endif %};"></span>
+                    </span>
+                </label>
+                {% else %}
+                    {% if bot.source_code_url %}
+                        <a href="{{ bot.source_code_url }}" class="btn-primary" target="_blank">{% trans "Download Source Code" %}</a>
+                    {% else %}
+                        <span style="color: var(--text-secondary); font-size: 0.9rem;">{% trans "Code will be uploaded shortly." %}</span>
+                    {% endif %}
+                {% endif %}
             {% endif %}
         </div>
         

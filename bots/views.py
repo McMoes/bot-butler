@@ -36,6 +36,11 @@ class CreateOrderView(View):
             ai_price_estimate = Decimal(str(requirements.get('pricing_estimate', 0.00)))
             total_price = category.base_price + ai_price_estimate
             
+            is_hosted = requirements.get('is_hosted', True)
+            monthly_fee_raw = requirements.get('monthly_fee', 0)
+            # Handle possible string formatting issues
+            monthly_fee = Decimal(str(monthly_fee_raw).replace(',', '.')) if monthly_fee_raw else Decimal('0.00')
+            
             if consulting_requested:
                 total_price += Decimal('150.00')
 
@@ -47,29 +52,51 @@ class CreateOrderView(View):
                 consulting_requested=consulting_requested,
                 contact_info=contact_info,
                 total_price=total_price,
+                is_hosted=is_hosted,
+                monthly_fee=monthly_fee,
                 status='pending'
             )
 
             # Create Stripe Checkout Session
             domain_url = request.build_absolute_uri('/')[:-1] # Remove trailing slash
             
-            checkout_session = stripe.checkout.Session.create(
-                payment_method_types=['card'],
-                line_items=[{
+            line_items = [{
+                'price_data': {
+                    'currency': 'eur',
+                    'product_data': {
+                        'name': f"Bot Butler - {category.name} (Architektur & Setup)",
+                        'description': "Einmalige Entwicklung",
+                    },
+                    'unit_amount': int(total_price * 100),
+                },
+                'quantity': 1,
+            }]
+            
+            checkout_mode = 'payment'
+            
+            if is_hosted and monthly_fee > 0:
+                checkout_mode = 'subscription'
+                line_items.append({
                     'price_data': {
                         'currency': 'eur',
                         'product_data': {
-                            'name': f"Bot Butler - {category.name}",
-                            'description': "Custom AI Automated Solution",
+                            'name': f"Bot Butler - {category.name} (Managed Hosting)",
                         },
-                        'unit_amount': int(total_price * 100), # Stripe expects cents
+                        'unit_amount': int(monthly_fee * 100),
+                        'recurring': {
+                            'interval': 'month'
+                        }
                     },
                     'quantity': 1,
-                }],
+                })
+            
+            checkout_session = stripe.checkout.Session.create(
+                payment_method_types=['card'],
+                line_items=line_items,
                 metadata={
                     'order_id': order.order_id
                 },
-                mode='payment',
+                mode=checkout_mode,
                 success_url=domain_url + '/?checkout=success',
                 cancel_url=domain_url + '/?checkout=canceled',
             )

@@ -37,10 +37,13 @@ class Order(models.Model):
     
     # Financials
     total_price = models.DecimalField(_("Total Price (€)"), max_digits=10, decimal_places=2, default=0.00)
+    is_hosted = models.BooleanField(_("Managed Hosting"), default=True)
+    monthly_fee = models.DecimalField(_("Monthly Hosting Fee (€)"), max_digits=8, decimal_places=2, default=0.00)
     
     # Fulfillment & Management
     status = models.CharField(_("Status"), max_length=20, choices=STATUS_CHOICES, default='pending')
     draft_file_path = models.CharField(_("Draft File Path"), max_length=255, blank=True)
+    source_code_url = models.CharField(_("Source Code URL/Path"), max_length=500, blank=True, help_text=_("Link to the clean source code for non-hosted bots"))
     is_active = models.BooleanField(_("Bot Active"), default=True, help_text=_("Toggle bot status on or off"))
     
     created_at = models.DateTimeField(auto_now_add=True)

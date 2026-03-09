@@ -78,12 +78,28 @@ function processAiResponse(userInput) {
             let aiText = data.reply;
             state.history.push({ role: 'model', parts: [aiText] }); // save AI reply to local history
             
-            if (aiText.includes('[CHECKOUT_READY]')) {
-                aiText = aiText.replace('[CHECKOUT_READY]', '').trim();
+            if (aiText.includes('[CHECKOUT_READY')) {
+                // Parse AI JSON tag
+                const match = aiText.match(/\[CHECKOUT_READY:\s*(\{.*\})\s*\]/);
+                if (match) {
+                    try {
+                        const checkoutData = JSON.parse(match[1]);
+                        state.requirements.is_hosted = checkoutData.is_hosted;
+                        state.requirements.monthly_fee = checkoutData.monthly_fee;
+                    } catch (e) {
+                         console.error("Failed to parse checkout JSON", e);
+                    }
+                }
+                
+                aiText = aiText.replace(/\[CHECKOUT_READY.*?\]/, '').trim();
                 appendMessage('ai', aiText);
                 
                 // Show checkout button
-                inputAreaEl.innerHTML = `<button class="btn-primary" style="width:100%" onclick="submitCheckout()">Confirm & Checkout (${state.basePrice}€+)</button>`;
+                let btnText = `Confirm & Checkout (${state.basePrice}€ Setup)`;
+                if (state.requirements.monthly_fee > 0) {
+                     btnText = `Confirm & Checkout (${state.basePrice}€ Setup + ${state.requirements.monthly_fee}€/mo)`;
+                }
+                inputAreaEl.innerHTML = `<button class="btn-primary" style="width:100%" onclick="submitCheckout()">` + btnText + `</button>`;
             } else {
                 appendMessage('ai', aiText);
                 inputField.focus();
