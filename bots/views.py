@@ -14,6 +14,9 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 @method_decorator(csrf_exempt, name='dispatch')
 class CreateOrderView(View):
     def post(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return JsonResponse({'requires_login': True, 'error': 'Authentication required'}, status=401)
+
         try:
             data = json.loads(request.body)
             category_id = data.get('category_id')
@@ -38,6 +41,7 @@ class CreateOrderView(View):
 
             # Create Order as pending
             order = Order.objects.create(
+                user=request.user,
                 category=category,
                 requirements_json=requirements,
                 consulting_requested=consulting_requested,
@@ -114,3 +118,35 @@ class StripeWebhookView(View):
                     pass
 
         return JsonResponse({'status': 'success'})
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import BotAdjustment
+
+class ToggleBotStatusView(LoginRequiredMixin, View):
+    def post(self, request, order_id, *args, **kwargs):
+        try:
+            data = json.loads(request.body)
+            order = Order.objects.get(order_id=order_id, user=request.user)
+            order.is_active = data.get('is_active', True)
+            order.save()
+            return JsonResponse({'success': True})
+        except Order.DoesNotExist:
+            return JsonResponse({'error': 'Order not found'}, status=404)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+
+class BotAdjustmentView(LoginRequiredMixin, View):
+    def post(self, request, order_id, *args, **kwargs):
+        try:
+            data = json.loads(request.body)
+            message = data.get('message', '')
+            if not message:
+                return JsonResponse({'error': 'Message required'}, status=400)
+                
+            order = Order.objects.get(order_id=order_id, user=request.user)
+            BotAdjustment.objects.create(order=order, message=message, is_from_user=True)
+            return JsonResponse({'success': True})
+        except Order.DoesNotExist:
+            return JsonResponse({'error': 'Order not found'}, status=404)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)

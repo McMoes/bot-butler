@@ -124,7 +124,12 @@ function submitCheckout() {
         },
         body: JSON.stringify(payload)
     })
-    .then(response => response.json())
+    .then(response => {
+        if (response.status === 401) {
+            return response.json().then(errData => { throw errData; });
+        }
+        return response.json();
+    })
     .then(data => {
         if (data.success && data.checkout_url) {
             appendMessage('ai', `Redirecting you to our secure Stripe checkout...`);
@@ -136,7 +141,12 @@ function submitCheckout() {
     })
     .catch(error => {
         console.error('Error:', error);
-        appendMessage('ai', `❌ <strong>Network Error.</strong> Could not reach the server.`);
-        inputAreaEl.innerHTML = `<button class="btn-primary" style="width:100%" onclick="submitCheckout()">Retry Checkout</button>`;
+        if (error && error.requires_login) {
+            appendMessage('ai', `<strong>Authentication Required</strong><br>To securely manage your bot, toggle it on/off, and request custom adjustments in the future, please create a free account or log in first.<br><br><a href="/auth/login/" class="btn-outline" style="display:inline-block; margin-top:10px; margin-right:10px;">Login</a> <a href="/register/" class="btn-primary" style="display:inline-block; margin-top:10px;">Register</a>`);
+            inputAreaEl.innerHTML = `<button class="btn-primary" style="width:100%" onclick="submitCheckout()">Checkout (${finalPrice}€)</button>`.replace('finalPrice', state.basePrice + (state.consultingRequested ? 150 : 0));
+        } else {
+            appendMessage('ai', `❌ <strong>Network Error.</strong> Could not reach the server.`);
+            inputAreaEl.innerHTML = `<button class="btn-primary" style="width:100%" onclick="submitCheckout()">Retry Checkout</button>`;
+        }
     });
 }

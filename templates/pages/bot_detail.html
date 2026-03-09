@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block content %}
+<section class="hero" style="padding-top: 120px; padding-bottom: 20px;">
+    <h1>{{ bot.category.name|default:"Custom Bot" }}</h1>
+    <p>ID: <span style="color: var(--brand-primary);">{{ bot.order_id }}</span></p>
+</section>
+
+<section class="bot-detail-section" style="max-width: 1200px; margin: 0 auto; padding: 2rem; display: grid; grid-template-columns: 1fr 2fr; gap: 2rem;">
+    <!-- Settings Panel -->
+    <div class="glass-card" style="padding: 2rem; height: fit-content;">
+        <h3 style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.5rem;">{% trans "Bot Settings" %}</h3>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <div>
+                <strong style="display: block; margin-bottom: 0.2rem;">{% trans "Status" %}</strong>
+                <span id="status-text" style="color: var(--text-secondary); font-size: 0.9rem;">
+                    {% if bot.status == 'delivered' %}
+                        {% if bot.is_active %}{% trans "Active & Listening" %}{% else %}{% trans "Paused" %}{% endif %}
+                    {% else %}
+                        {{ bot.get_status_display }}
+                    {% endif %}
+                </span>
+            </div>
+            
+            {% if bot.status == 'delivered' %}
+            <label class="switch" style="position: relative; display: inline-block; width: 60px; height: 34px;">
+                <input type="checkbox" id="bot-toggle" {% if bot.is_active %}checked{% endif %} onchange="toggleBotStatus()" style="opacity: 0; width: 0; height: 0;">
+                <span class="slider round" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: {% if bot.is_active %}#2dd4bf{% else %}#4b5563{% endif %}; transition: .4s; border-radius: 34px;">
+                    <span style="position: absolute; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; transform: {% if bot.is_active %}translateX(26px){% else %}translateX(0){% endif %};"></span>
+                </span>
+            </label>
+            {% endif %}
+        </div>
+        
+        <div style="margin-bottom: 1.5rem;">
+            <strong style="display: block; margin-bottom: 0.2rem;">{% trans "Original Requirements" %}</strong>
+            <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px; font-size: 0.9rem; color: var(--text-secondary);">
+                {{ bot.requirements_json.core_description|default:"No description provided." }}
+            </div>
+        </div>
+        
+        <a href="{% url 'pages:dashboard' %}" class="btn-outline" style="display: block; text-align: center; width: 100%;">{% trans "Back to Dashboard" %}</a>
+    </div>
+
+    <!-- Adjustment Chat Panel -->
+    <div class="builder-ui" style="margin: 0;">
+        <div class="builder-header">
+            <h3>{% trans "Adjustments & Upsells" %}</h3>
+            <span class="status-indicator" style="color: #8b5cf6; font-size: 0.85rem;">● {% trans "Support Team" %}</span>
+        </div>
+        
+        <div class="builder-body" style="height: 500px; display: flex; flex-direction: column;">
+            <div class="chat-history" id="adjustment-chat" style="flex-grow: 1; overflow-y: auto; padding-right: 10px; display: flex; flex-direction: column;">
+                <div class="chat-message message-ai">
+                    <strong>Support Team:</strong> {% trans "Hello! If you need any adjustments, extra features, or integrations for this bot, please describe them here. We will review your request and provide a quote." %}
+                </div>
+                
+                {% for adj in bot.adjustments.all %}
+                <div class="chat-message {% if adj.is_from_user %}message-user{% else %}message-ai{% endif %}">
+                    <strong>{% if adj.is_from_user %}You{% else %}Support Team{% endif %}:</strong>
+                    {{ adj.message }}
+                    <div style="font-size: 0.75rem; color: #6b7280; margin-top: 0.5rem; text-align: right;">{{ adj.created_at|date:"d.m.Y H:i" }}</div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="chat-input-area" style="display: flex; gap: 1rem; margin-top: 1rem;">
+                <input type="text" id="adjustment-input" placeholder="{% trans 'Describe your needed adjustment...' %}" onkeypress="handleAdjKeyPress(event)">
+                <button class="btn-primary" onclick="sendAdjustment()">{% trans "Send" %}</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const orderId = "{{ bot.order_id }}";
+    const csrfToken = "{{ csrf_token }}";
+
+    function toggleBotStatus() {
+        const checkbox = document.getElementById('bot-toggle');
+        const slider = checkbox.nextElementSibling;
+        const knob = slider.querySelector('span');
+        const statusText = document.getElementById('status-text');
+        
+        // Optimistic UI updates
+        const isActive = checkbox.checked;
+        slider.style.backgroundColor = isActive ? '#2dd4bf' : '#4b5563';
+        knob.style.transform = isActive ? 'translateX(26px)' : 'translateX(0)';
+        statusText.innerText = isActive ? '{% trans "Active & Listening" %}' : '{% trans "Paused" %}';
+
+        fetch(`/api/bots/${orderId}/toggle/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ is_active: isActive })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (!data.success) {
+                // Revert on failure
+                checkbox.checked = !isActive;
+                toggleBotStatus(); // Re-run visual update to old state
+                alert('{% trans "Failed to update bot status." %}');
+            }
+        });
+    }
+
+    function handleAdjKeyPress(e) {
+        if (e.key === 'Enter') {
+            sendAdjustment();
+        }
+    }
+
+    function sendAdjustment() {
+        const input = document.getElementById('adjustment-input');
+        const text = input.value.trim();
+        if(!text) return;
+        
+        input.value = '';
+        input.disabled = true;
+
+        // Optimistic append
+        const chat = document.getElementById('adjustment-chat');
+        const msgHtml = `<div class="chat-message message-user">
+                    <strong>You:</strong> ${text}
+                    <div style="font-size: 0.75rem; color: #6b7280; margin-top: 0.5rem; text-align: right;">Just now</div>
+                </div>`;
+        chat.insertAdjacentHTML('beforeend', msgHtml);
+        chat.scrollTop = chat.scrollHeight;
+
+        fetch(`/api/bots/${orderId}/adjust/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ message: text })
+        })
+        .then(response => response.json())
+        .then(data => {
+            input.disabled = false;
+            input.focus();
+            if(data.success) {
+                // optionally we could append a default AI message saying "We received your request"
+                const aiHtml = `<div class="chat-message message-ai">
+                    <strong>Bot Butler AI:</strong> {% trans "We've received your adjustment request. Our Support Team will review it and follow up shortly!" %}
+                </div>`;
+                chat.insertAdjacentHTML('beforeend', aiHtml);
+                chat.scrollTop = chat.scrollHeight;
+            } else {
+                alert('Error sending message');
+            }
+        });
+    }
+</script>
+{% endblock %}

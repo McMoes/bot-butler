@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block content %}
+<section class="hero" style="padding-top: 120px; padding-bottom: 60px;">
+    <h1>{% trans "Your" %} <span class="gradient-text">{% trans "Command Center." %}</span></h1>
+    <p>{% trans "Manage your active bots, view invoices, and request custom integrations." %}</p>
+</section>
+
+<section class="dashboard-section" style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+    <h2 style="margin-bottom: 2rem; color: var(--text-primary); font-family: var(--font-heading);">{% trans "My Bots" %}</h2>
+    
+    <div class="bot-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem;">
+        {% for bot in orders %}
+        <div class="glass-card" style="padding: 2rem; position: relative;">
+            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+                <div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: #fff;">{{ bot.category.name|default:"Custom Bot" }}</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">ID: {{ bot.order_id }}</p>
+                </div>
+                {% if bot.status == 'delivered' %}
+                    {% if bot.is_active %}
+                        <span style="background: rgba(45, 212, 191, 0.1); color: #2dd4bf; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid rgba(45, 212, 191, 0.2);">Live</span>
+                    {% else %}
+                        <span style="background: rgba(239, 68, 68, 0.1); color: #ef4444; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid rgba(239, 68, 68, 0.2);">Paused</span>
+                    {% endif %}
+                {% else %}
+                    <span style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid rgba(139, 92, 246, 0.2);">{{ bot.get_status_display }}</span>
+                {% endif %}
+            </div>
+            
+            <div style="margin-bottom: 1.5rem;">
+                <p style="color: var(--text-primary); margin-bottom: 0.5rem;"><strong>{% trans "Price:" %}</strong> {{ bot.total_price }}€</p>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;"><strong>{% trans "Ordered:" %}</strong> {{ bot.created_at|date:"d. M Y" }}</p>
+            </div>
+            
+            <a href="{% url 'pages:bot_detail' bot.pk %}" class="btn-outline" style="display: block; text-align: center; width: 100%;">{% trans "Manage Bot" %}</a>
+        </div>
+        {% empty %}
+        <div class="glass-card" style="padding: 3rem; text-align: center; grid-column: 1 / -1;">
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">{% trans "You haven't ordered any bots yet." %}</p>
+            <a href="{% url 'pages:index' %}#builder" class="btn-primary">{% trans "Build Your First Bot" %}</a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

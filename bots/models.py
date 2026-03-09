@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from parler.models import TranslatableModel, TranslatedFields
 
@@ -26,6 +27,7 @@ class Order(models.Model):
     ]
 
     order_id = models.CharField(_("Order ID"), max_length=50, unique=True, editable=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='orders', null=True, blank=True, verbose_name=_("User"))
     category = models.ForeignKey(BotCategory, on_delete=models.SET_NULL, null=True, verbose_name=_("Bot Category"))
     
     # AI Scoping Results
@@ -36,9 +38,10 @@ class Order(models.Model):
     # Financials
     total_price = models.DecimalField(_("Total Price (€)"), max_digits=10, decimal_places=2, default=0.00)
     
-    # Fulfillment
+    # Fulfillment & Management
     status = models.CharField(_("Status"), max_length=20, choices=STATUS_CHOICES, default='pending')
     draft_file_path = models.CharField(_("Draft File Path"), max_length=255, blank=True)
+    is_active = models.BooleanField(_("Bot Active"), default=True, help_text=_("Toggle bot status on or off"))
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -59,3 +62,17 @@ class Order(models.Model):
             cat_name = self.category.name if self.category else "CustomBot"
             self.order_id = f"Order_{short_id}_{cat_name}".replace(" ", "")
         super().save(*args, **kwargs)
+
+class BotAdjustment(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='adjustments')
+    message = models.TextField(_("Adjustment Request"))
+    is_from_user = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _("Bot Adjustment")
+        verbose_name_plural = _("Bot Adjustments")
+        ordering = ['created_at']
+
+    def __str__(self):
+        return f"Adj for {self.order.order_id} at {self.created_at}"

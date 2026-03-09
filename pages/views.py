@@ -1,7 +1,8 @@
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
-from bots.models import BotCategory
+from bots.models import BotCategory, Order
 
 class IndexView(TemplateView):
     template_name = 'pages/index.html'
@@ -16,3 +17,19 @@ class RegisterView(CreateView):
     form_class = UserCreationForm
     template_name = 'registration/register.html'
     success_url = reverse_lazy('login')
+
+class DashboardView(LoginRequiredMixin, ListView):
+    model = Order
+    template_name = 'pages/dashboard.html'
+    context_object_name = 'orders'
+
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user).order_by('-created_at')
+
+class BotDetailView(LoginRequiredMixin, DetailView):
+    model = Order
+    template_name = 'pages/bot_detail.html'
+    context_object_name = 'bot'
+
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)
