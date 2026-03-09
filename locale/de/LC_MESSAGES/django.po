@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-08 13:57+0100\n"
+"POT-Creation-Date: 2026-03-09 12:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,11 +78,11 @@ msgstr "Bot Bestellung"
 msgid "Bot Orders"
 msgstr "Bot Bestellungen"
 
-#: config/settings.py:122
+#: config/settings.py:123
 msgid "German"
 msgstr "Deutsch"
 
-#: config/settings.py:123
+#: config/settings.py:124
 msgid "English"
 msgstr "Englisch"
 
@@ -94,15 +94,15 @@ msgstr "Funktionen"
 msgid "Build Your Bot"
 msgstr "Bot Bauen"
 
-#: templates/base.html:66
+#: templates/base.html:62
 msgid "Premium Bot-as-a-Service architecture powered by AI."
 msgstr "Premium Bot-as-a-Service Architektur angetrieben durch KI."
 
-#: templates/base.html:69
+#: templates/base.html:65
 msgid "Privacy Policy"
 msgstr "Datenschutz"
 
-#: templates/base.html:70
+#: templates/base.html:66
 msgid "Terms of Service"
 msgstr "AGB"
 
@@ -110,31 +110,72 @@ msgstr "AGB"
 msgid "Automate Your Vision with"
 msgstr "Automatisiere Deine Vision mit"
 
+#: templates/pages/index.html:6
+msgid "AI Precision."
+msgstr "Bot Butler."
+
 #: templates/pages/index.html:7
 msgid ""
 "Select your bot category, tell our AI what you need, and receive a fully "
 "tailored Bot-as-a-Service solution integrated instantly."
-msgstr "Wähle deine Bot-Kategorie, beschreibe dem Assistenten deine Anforderungen und erhalte sofort eine maßgeschneiderte Lösung."
+msgstr ""
+"Wähle deine Bot-Kategorie, beschreibe dem Assistenten deine Anforderungen "
+"und erhalte sofort eine maßgeschneiderte Lösung."
 
 #: templates/pages/index.html:8
 msgid "Start Building Now"
 msgstr "Jetzt Erstellen"
 
 #: templates/pages/index.html:14
-msgid "AI Bot Architect"
-msgstr "Bot Butler KI"
+msgid "Why Bot Butler?"
+msgstr "Warum Bot Butler?"
+
+#: templates/pages/index.html:18
+msgid "Instant Setup"
+msgstr "Sofortiges Setup"
+
+#: templates/pages/index.html:19
+msgid ""
+"Deploy your custom bot via our Bot-as-a-Service model in minutes, not months."
+msgstr "Deploye deinen maßgeschneiderten Bot über unser Bot-as-a-Service Modell in Minuten, nicht Monaten."
+
+#: templates/pages/index.html:23
+msgid "AI-Powered Logic"
+msgstr "KI-Gestützte Logik"
 
 #: templates/pages/index.html:24
 msgid ""
+"Advanced language models integrated directly into your workflows for "
+"intelligent automation."
+msgstr "Fortschrittliche Sprachmodelle direkt in deine Workflows integriert für intelligente Automatisierung."
+
+#: templates/pages/index.html:28
+msgid "Multi-Platform"
+msgstr "Multi-Plattform"
+
+#: templates/pages/index.html:29
+msgid ""
+"Native support for Telegram, Discord, and Web out of the box. Reach your "
+"users anywhere."
+msgstr "Native Unterstützung für Telegram, Discord und Web direkt integriert. Erreiche deine Nutzer überall."
+
+#: templates/pages/index.html:38
+msgid "AI Bot Architect"
+msgstr "Bot Butler KI"
+
+#: templates/pages/index.html:48
+msgid ""
 "Hello! To get started, please select the type of automation bot you're "
 "looking for."
-msgstr "Hallo! Um zu beginnen, wähle bitte die Art des Automatisierungs-Bots, den du suchst."
+msgstr ""
+"Hallo! Um zu beginnen, wähle bitte die Art des Automatisierungs-Bots, den du "
+"suchst."
 
-#: templates/pages/index.html:50
+#: templates/pages/index.html:74
 msgid "Describe your bot requirements..."
 msgstr "Was soll dein Bot können?..."
 
-#: templates/pages/index.html:51
+#: templates/pages/index.html:75
 msgid "Send"
 msgstr "Senden"
 

@@ -3,9 +3,33 @@
 
 {% block content %}
 <section class="hero">
-    <h1>{% trans "Automate Your Vision with" %} <br><span class="gradient-text">AI Precision.</span></h1>
+    <h1>{% trans "Automate Your Vision with" %} <br><span class="gradient-text">{% trans "AI Precision." %}</span></h1>
     <p>{% trans "Select your bot category, tell our AI what you need, and receive a fully tailored Bot-as-a-Service solution integrated instantly." %}</p>
     <a href="#builder" class="btn-primary">{% trans "Start Building Now" %}</a>
+</section>
+
+<!-- Neu: Features Section -->
+<section id="features" class="features-section">
+    <div class="features-container">
+        <h2 class="section-title">{% trans "Why Bot Butler?" %}</h2>
+        <div class="feature-grid">
+            <div class="feature-card glass-card">
+                <div class="feature-icon">⚡</div>
+                <h3>{% trans "Instant Setup" %}</h3>
+                <p>{% trans "Deploy your custom bot via our Bot-as-a-Service model in minutes, not months." %}</p>
+            </div>
+            <div class="feature-card glass-card">
+                <div class="feature-icon">🧠</div>
+                <h3>{% trans "AI-Powered Logic" %}</h3>
+                <p>{% trans "Advanced language models integrated directly into your workflows for intelligent automation." %}</p>
+            </div>
+            <div class="feature-card glass-card">
+                <div class="feature-icon">🌐</div>
+                <h3>{% trans "Multi-Platform" %}</h3>
+                <p>{% trans "Native support for Telegram, Discord, and Web out of the box. Reach your users anywhere." %}</p>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section id="builder" class="builder-section">
