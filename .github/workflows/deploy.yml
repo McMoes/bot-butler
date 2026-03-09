@@ -30,15 +30,20 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
 
-            # Build and start production containers
+            # Build production containers
             docker-compose -f docker-compose.prod.yml build
+
+            # STOP old containers to free up RAM before running heavy management commands
+            docker-compose -f docker-compose.prod.yml down
+
+            # Run migrations in a temporary container
+            docker-compose -f docker-compose.prod.yml run --rm web python manage.py migrate --noinput
+
+            # Collect Static in a temporary container
+            docker-compose -f docker-compose.prod.yml run --rm web python manage.py collectstatic --noinput
+
+            # Start production containers (Gunicorn) with fresh code
             docker-compose -f docker-compose.prod.yml up -d
-
-            # Run migrations
-            docker-compose -f docker-compose.prod.yml exec -T web python manage.py migrate --noinput
-
-            # Collect Static
-            docker-compose -f docker-compose.prod.yml exec -T web python manage.py collectstatic --noinput
 
             # Clean up old images
             docker image prune -a -f
