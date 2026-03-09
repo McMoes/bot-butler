@@ -32,14 +32,20 @@ class CreateOrderView(View):
             except BotCategory.DoesNotExist:
                 return JsonResponse({'error': 'Invalid Category ID'}, status=400)
 
-            # Price Calculation
+            # SECURITY ENFORCEMENT: Ignore frontend pricing data. 
+            # Read directly from the server-side session populated by the AI Chat View.
+            secure_data = request.session.get('secure_bot_checkout')
+            
+            if secure_data and str(secure_data.get('category_id')) == str(category_id):
+                is_hosted = secure_data.get('is_hosted', True)
+                monthly_fee = Decimal(secure_data.get('monthly_fee', '0.00'))
+            else:
+                # If there is no valid session data (e.g. user completely bypassed chat),
+                # fallback to safe logic or reject. Since this is a custom bot, we reject.
+                return JsonResponse({'error': 'Checkout manipulation detected or session expired. Please complete the chat first.'}, status=403)
+                
             ai_price_estimate = Decimal(str(requirements.get('pricing_estimate', 0.00)))
             total_price = category.base_price + ai_price_estimate
-            
-            is_hosted = requirements.get('is_hosted', True)
-            monthly_fee_raw = requirements.get('monthly_fee', 0)
-            # Handle possible string formatting issues
-            monthly_fee = Decimal(str(monthly_fee_raw).replace(',', '.')) if monthly_fee_raw else Decimal('0.00')
             
             if consulting_requested:
                 total_price += Decimal('150.00')
@@ -162,6 +168,8 @@ class ToggleBotStatusView(LoginRequiredMixin, View):
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
 
+import re
+
 @method_decorator(csrf_exempt, name='dispatch')
 class BotBuilderChatView(View):
     def post(self, request, *args, **kwargs):
@@ -177,10 +185,26 @@ class BotBuilderChatView(View):
             from .ai_utils import get_sales_chat_response
             ai_reply = get_sales_chat_response(history, category.name, category.base_price)
             
+            # SECURITY: Parse the AI's final price quote on the backend
+            match = re.search(r'\[CHECKOUT_READY:\s*(\{.*?\})\s*\]', ai_reply)
+            if match:
+                try:
+                    checkout_data = json.loads(match.group(1))
+                    # Store securely in the server-side session
+                    request.session['secure_bot_checkout'] = {
+                        'category_id': category_id,
+                        'is_hosted': checkout_data.get('is_hosted', True),
+                        'monthly_fee': str(checkout_data.get('monthly_fee', '0.00'))
+                    }
+                    request.session.modified = True
+                except json.JSONDecodeError:
+                    pass
+            
             return JsonResponse({'success': True, 'reply': ai_reply})
         except BotCategory.DoesNotExist:
             return JsonResponse({'error': 'Category not found'}, status=404)
         except Exception as e:
+            import traceback; traceback.print_exc()
             return JsonResponse({'error': str(e)}, status=500)
 
 class BotAdjustmentView(LoginRequiredMixin, View):
