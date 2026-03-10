@@ -7,14 +7,14 @@
 <div class="auth-container">
     <div class="glass-card auth-card">
         <h2>{% trans "Create an Account" %}</h2>
-        <form method="post" class="auth-form">
+        <form method="post" class="auth-form" {% if request.GET.next %}action="?next={{ request.GET.next }}"{% endif %}>
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn-primary">{% trans "Register" %}</button>
         </form>
         <div class="auth-footer">
             {% trans "Already have an account?" %} 
-            <a href="{% url 'login' %}">{% trans "Login here" %}</a>
+            <a href="{% url 'login' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}">{% trans "Login here" %}</a>
         </div>
     </div>
 </div>

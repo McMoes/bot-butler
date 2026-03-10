@@ -2,8 +2,30 @@ let state = {
     categoryId: null,
     categoryName: null,
     basePrice: 0,
-    history: []
+    history: [],
+    requirements: {
+        is_hosted: true,
+        monthly_fee: 0
+    },
+    checkoutReady: false,
+    checkoutUrl: null
 };
+
+function saveState() {
+    sessionStorage.setItem('botBuilderState', JSON.stringify(state));
+}
+
+function loadState() {
+    const saved = sessionStorage.getItem('botBuilderState');
+    if (saved) {
+        try {
+            return JSON.parse(saved);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+    return null;
+}
 
 const chatHistoryEl = document.getElementById('chat-history');
 const initialSelectionEl = document.getElementById('category-selection');
@@ -15,6 +37,10 @@ function selectCategory(id, name, price) {
     state.categoryName = name;
     state.basePrice = parseFloat(price);
     state.history = [];
+    state.checkoutReady = false;
+    state.checkoutUrl = null;
+    
+    saveState();
     
     // Hide grid, show chat
     initialSelectionEl.style.display = 'none';
@@ -91,6 +117,9 @@ function processAiResponse(userInput) {
                     }
                 }
                 
+                state.checkoutReady = true;
+                saveState();
+                
                 aiText = aiText.replace(/\[CHECKOUT_READY.*?\]/, '').trim();
                 appendMessage('ai', aiText);
                 
@@ -101,6 +130,7 @@ function processAiResponse(userInput) {
                 }
                 inputAreaEl.innerHTML = `<button class="btn-primary" style="width:100%" onclick="submitCheckout()">` + btnText + `</button>`;
             } else {
+                saveState();
                 appendMessage('ai', aiText);
                 inputField.focus();
             }
@@ -144,6 +174,8 @@ function submitCheckout() {
     .then(data => {
         if (data.success && data.checkout_url) {
             appendMessage('ai', `Redirecting you to our secure Stripe checkout...`);
+            state.checkoutUrl = data.checkout_url;
+            saveState();
             window.location.href = data.checkout_url;
         } else {
             appendMessage('ai', `❌ <strong>Error:</strong> ${data.error || 'Unknown error occurred.'}`);
@@ -153,11 +185,58 @@ function submitCheckout() {
     .catch(error => {
         console.error('Error:', error);
         if (error && error.requires_login) {
-            appendMessage('ai', `<strong>Authentication Required</strong><br>To securely manage your bot, toggle it on/off, and request custom adjustments in the future, please create a free account or log in first.<br><br><a href="/auth/login/" class="btn-outline" style="display:inline-block; margin-top:10px; margin-right:10px;">Login</a> <a href="/register/" class="btn-primary" style="display:inline-block; margin-top:10px;">Register</a>`);
-            inputAreaEl.innerHTML = `<button class="btn-primary" style="width:100%" onclick="submitCheckout()">Checkout (${state.basePrice}€)</button>`;
+            appendMessage('ai', `<strong>Authentication Required</strong><br>To securely manage your bot, toggle it on/off, and request custom adjustments in the future, please create a free account or log in first.<br><br><a href="/auth/login/?next=/#builder" class="btn-outline" style="display:inline-block; margin-top:10px; margin-right:10px;">Login</a> <a href="/register/?next=/#builder" class="btn-primary" style="display:inline-block; margin-top:10px;">Register</a>`);
+            
+            let btnText = `Checkout (${state.basePrice}€)`;
+            if (state.requirements && state.requirements.monthly_fee > 0) {
+                 btnText = `Checkout (${state.basePrice}€ + ${state.requirements.monthly_fee}€/mo)`;
+            }
+            inputAreaEl.innerHTML = `<button class="btn-primary" style="width:100%" onclick="submitCheckout()">` + btnText + `</button>`;
         } else {
             appendMessage('ai', `❌ <strong>Network Error.</strong> Could not reach the server.`);
             inputAreaEl.innerHTML = `<button class="btn-primary" style="width:100%" onclick="submitCheckout()">Retry Checkout</button>`;
         }
     });
 }
+
+// Initialization: Check if there's a saved state on page load
+window.addEventListener('DOMContentLoaded', () => {
+    const savedState = loadState();
+    if (savedState && savedState.categoryId) {
+        // Restore state object
+        state = savedState;
+        
+        // Hide selection grid
+        initialSelectionEl.style.display = 'none';
+        
+        // Show chat UI
+        chatHistoryEl.style.display = 'flex';
+        inputAreaEl.style.display = 'flex';
+        
+        // Re-render history
+        chatHistoryEl.innerHTML = '';
+        state.history.forEach(msg => {
+            const isAi = msg.role === 'model';
+            const senderName = isAi ? 'Bot Butler AI' : 'You';
+            const text = msg.parts[0];
+            
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('chat-message');
+            msgDiv.classList.add(isAi ? 'message-ai' : 'message-user');
+            msgDiv.innerHTML = `<strong>${senderName}:</strong> ${text}`;
+            chatHistoryEl.appendChild(msgDiv);
+        });
+        
+        // Scroll to bottom
+        chatHistoryEl.scrollTop = chatHistoryEl.scrollHeight;
+        
+        // Restore checkout button if it was ready
+        if (state.checkoutReady) {
+            let btnText = `Confirm & Checkout (${state.basePrice}€ Setup)`;
+            if (state.requirements && state.requirements.monthly_fee > 0) {
+                 btnText = `Confirm & Checkout (${state.basePrice}€ Setup + ${state.requirements.monthly_fee}€/mo)`;
+            }
+            inputAreaEl.innerHTML = `<button class="btn-primary" style="width:100%" onclick="submitCheckout()">` + btnText + `</button>`;
+        }
+    }
+});

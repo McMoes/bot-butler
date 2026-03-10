@@ -22,10 +22,24 @@ class DatenschutzView(TemplateView):
 class ImpressumView(TemplateView):
     template_name = 'pages/impressum.html'
 
+from django.contrib.auth import login
+
 class RegisterView(CreateView):
     form_class = UserCreationForm
     template_name = 'registration/register.html'
-    success_url = reverse_lazy('login')
+    
+    def form_valid(self, form):
+        # Save user and log them in immediately
+        user = form.save()
+        login(self.request, user)
+        return super().form_valid(form)
+        
+    def get_success_url(self):
+        # Respect 'next' parameter so users go back to their chat/checkout
+        next_url = self.request.GET.get('next')
+        if next_url:
+            return next_url
+        return reverse_lazy('pages:dashboard')
 
 class DashboardView(LoginRequiredMixin, ListView):
     model = Order
