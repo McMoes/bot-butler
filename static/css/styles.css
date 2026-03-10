@@ -13,10 +13,31 @@
     --brand-secondary: #06b6d4;
     --gradient-glow: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(6, 182, 212, 0.4));
     --gradient-text: linear-gradient(to right, #a78bfa, #2dd4bf);
+    --glow-color-1: rgba(139, 92, 246, 0.1);
+    --glow-color-2: rgba(6, 182, 212, 0.1);
     
     /* Setup */
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
+}
+
+[data-theme="light"] {
+    /* Premium Light Theme Core */
+    --bg-base: #f8fafc;
+    --bg-surface: rgba(255, 255, 255, 0.7);
+    --border-subtle: rgba(0, 0, 0, 0.08);
+    
+    /* Typography */
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    
+    /* Brand Gradients (Cyberpunk/Premium) */
+    --brand-primary: #7c3aed;
+    --brand-secondary: #0284c7;
+    --gradient-glow: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(2, 132, 199, 0.15));
+    --gradient-text: linear-gradient(to right, #7c3aed, #0284c7);
+    --glow-color-1: rgba(124, 58, 237, 0.05);
+    --glow-color-2: rgba(2, 132, 199, 0.05);
 }
 
 * {
@@ -31,14 +52,16 @@ body {
     font-family: var(--font-body);
     line-height: 1.6;
     overflow-x: hidden;
-    background-image: radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.1), transparent 25%),
-                      radial-gradient(circle at 85% 30%, rgba(6, 182, 212, 0.1), transparent 25%);
+    background-image: radial-gradient(circle at 15% 50%, var(--glow-color-1), transparent 25%),
+                      radial-gradient(circle at 85% 30%, var(--glow-color-2), transparent 25%);
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* Base Classes */
 .gradient-text {
     background: var(--gradient-text);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 .dot {
