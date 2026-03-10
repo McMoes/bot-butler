@@ -6,9 +6,10 @@ from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 
 from bots import views as bots_views
-from config.sitemaps import BlogSitemap
+from config.sitemaps import BlogSitemap, StaticViewSitemap
 
 sitemaps = {
+    'static': StaticViewSitemap,
     'blog': BlogSitemap,
 }
 
