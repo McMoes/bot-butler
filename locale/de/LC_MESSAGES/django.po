@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-10 11:35+0100\n"
+"POT-Creation-Date: 2026-03-10 11:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,7 +156,7 @@ msgstr "Registrieren"
 msgid "Premium Bot-as-a-Service architecture powered by AI."
 msgstr "Premium Bot-as-a-Service Architektur angetrieben durch KI."
 
-#: templates/base.html:80
+#: templates/base.html:80 templates/pages/datenschutz.html:4
 msgid "Privacy Policy"
 msgstr "Datenschutz"
 
@@ -285,6 +285,10 @@ msgstr ""
 #| msgid "Build Your Bot"
 msgid "Build Your First Bot"
 msgstr "Bot Bauen"
+
+#: templates/pages/datenschutz.html:9
+msgid "Datenschutzerklärung"
+msgstr "Datenschutzerklärung"
 
 #: templates/pages/index.html:6
 msgid "Automate Your Vision with"
