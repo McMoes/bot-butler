@@ -1,0 +1,20 @@
+# Bot Butler Knowledge Base
+#==============================
+# Der Inhalt dieser Datei wird in Echtzeit von der Bot Butler KI auf der Webseite gelesen.
+# Du kannst hier jederzeit Fakten oder neue Angebote reinschreiben, die der KI-Assistent wissen soll.
+
+## Vorteile von Bot Butler gegenüber SaaS-Plattformen (Chatbase, Tidio)
+- Bei uns gibt es KEINE nervigen Wasserzeichen oder "Powered by..." Schriftzüge, selbst im kleinsten Paket. Komplett Branding-Free (White-Label)!
+- Wir bieten eine absolute "Done-For-You" Dienstleistung an: Der Kunde muss nichts selbst bauen, basteln oder trainieren. Wir machen alles von A bis Z.
+- Unsere Preise sind extrem aggressiv und fair:
+   - Einmaliges Setup Telegram Bot: ab 149€
+   - Einmaliges Setup Discord Bot: ab 189€
+   - Einmaliges Setup Web Customer Support Bot: ab 349€
+- Monatliches Hosting (wenn der Kunde es nicht selbst hosten will):
+   - Starter: 19€/Monat (500 Nachrichten)
+   - Pro: 49€/Monat (2.500 Nachrichten)
+   - Ultra: 89€/Monat (10.000 Nachrichten)
+
+## Allgemeine Unternehmensinformationen
+- Wir legen höchsten Wert auf Premium Design (Dark Mode, Glassmorphism).
+- Wir sind deutlich persönlicher, direkter und lösungsorientierter als anonyme Baukasten-Anbieter.

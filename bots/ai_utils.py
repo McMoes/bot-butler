@@ -6,6 +6,17 @@ import google.generativeai as genai
 
 logger = logging.getLogger(__name__)
 
+def get_knowledge_base():
+    """Reads the knowledge_base.txt file to inject current facts into AI prompts."""
+    kb_path = os.path.join(settings.BASE_DIR, 'knowledge_base.txt')
+    try:
+        if os.path.exists(kb_path):
+            with open(kb_path, 'r', encoding='utf-8') as f:
+                return f.read()
+    except Exception as e:
+        logger.error(f"Failed to read knowledge base: {e}")
+    return ""
+
 # Initialize clients (ensure keys are present)
 sales_key = getattr(settings, 'GEMINI_API_KEY_SALES', None)
 upsell_key = getattr(settings, 'GEMINI_API_KEY_UPSELL', None)
@@ -39,12 +50,15 @@ def get_sales_chat_response(chat_history: list, category_name: str, base_price: 
     WICHTIGE REGELN:
     1. Sprich Deutsch. Sei professionell, lösungsorientiert und freundlich (per 'Du').
     2. Stelle maximal 1-2 qualifizierende, technische Rückfragen pro Antwort. Frage nach Kontaktdaten (Email).
-    3. Die wichtigste Frage vor dem Abschluss: Frage den Kunden, ob wir den Bot für ihn 24/7 hosten sollen (Managed Hosting inkl. Wartung, berechne hierfür einen realistischen monatlichen Preis zwischen 9€ und 49€ je nach Komplexität) ODER ob er sich nur für den reinen Quellcode (Code-Only) interessiert und diesen selbst hosten möchte.
+    3. Die wichtigste Frage vor dem Abschluss: Frage den Kunden, ob wir den Bot für ihn 24/7 hosten sollen (Managed Hosting inkl. Wartung, berechne hierfür einen realistischen monatlichen Preis zwischen 19€ und 89€ je nach Komplexität) ODER ob er sich nur für den reinen Quellcode (Code-Only) interessiert und diesen selbst hosten möchte.
     4. Schreibe NIEMALS Code. Du klärst nur das Konzept.
     5. Antworte in einfachem HTML-Format, benutze <strong> oder <br>.
     6. WENN die Unterhaltung abgeschlossen ist (alle Anforderungen, E-Mail und Hosting-Präferenz sind geklärt), fasse alles zusammen und hänge EXAKT dieses Tag an das absolut letzte Ende deiner Nachricht an: 
        [CHECKOUT_READY: {{"is_hosted": true/false, "monthly_fee": xx.xx}}] 
        (Ersetze true/false und xx.xx basierend auf der Kundenentscheidung. Wenn is_hosted=false, muss monthly_fee=0.00 sein.)
+       
+    ZUSÄTZLICHES WISSEN FÜR DICH ÜBER BOT BUTLER:
+    {get_knowledge_base()}
     """
     
     try:
@@ -158,6 +172,9 @@ def get_landing_page_support_response(chat_history: list) -> str:
     2. Wenn jemand allgemeinen Nonsens fragt ("Schreibe ein Gedicht", "Wer ist der Präsident"), weise ihn höflich darauf hin, dass du NUR Fragen zum Bot Butler Service beantwortest.
     3. Sei freundlich, geduldig und verkaufsorientiert (per 'Du'). Formatiere deine Antworten sauber. Antworte in einfachem HTML format (nutze <strong> für Fettdruck und <br> für Zeilenumbrüche).
     4. Halte die Antworten kurz und präzise. Biete als nächsten Schritt an, unseren Bot-Architekten auf der Webseite aufzurufen.
+    
+    ZUSÄTZLICHES WISSEN FÜR DICH ÜBER BOT BUTLER:
+    {get_knowledge_base()}
     """
     
     try:
