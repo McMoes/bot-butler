@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-10 11:45+0100\n"
+"POT-Creation-Date: 2026-03-10 11:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,11 +156,15 @@ msgstr "Registrieren"
 msgid "Premium Bot-as-a-Service architecture powered by AI."
 msgstr "Premium Bot-as-a-Service Architektur angetrieben durch KI."
 
-#: templates/base.html:80 templates/pages/datenschutz.html:4
+#: templates/base.html:80
+msgid "Legal Notice"
+msgstr ""
+
+#: templates/base.html:81 templates/pages/datenschutz.html:4
 msgid "Privacy Policy"
 msgstr "Datenschutz"
 
-#: templates/base.html:81 templates/pages/agb.html:4
+#: templates/base.html:82 templates/pages/agb.html:4
 msgid "Terms of Service"
 msgstr "AGB"
 
@@ -289,6 +293,142 @@ msgstr "Bot Bauen"
 #: templates/pages/datenschutz.html:9
 msgid "Datenschutzerklärung"
 msgstr "Datenschutzerklärung"
+
+#: templates/pages/impressum.html:4 templates/pages/impressum.html:9
+msgid "Impressum"
+msgstr "Impressum"
+
+#: templates/pages/impressum.html:12
+msgid "Angaben gemäß § 5 TMG"
+msgstr "Angaben gemäß § 5 TMG"
+
+#: templates/pages/impressum.html:20
+msgid "Kontakt"
+msgstr "Kontakt"
+
+#: templates/pages/impressum.html:26
+msgid "Haftung für Inhalte"
+msgstr "Haftung für Inhalte"
+
+#: templates/pages/impressum.html:28
+msgid "Bot Butler ist ein Projekt von McMoe's Solutions."
+msgstr "Bot Butler ist ein Projekt von McMoe's Solutions."
+
+#: templates/pages/impressum.html:29
+msgid ""
+"Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf "
+"diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 "
+"TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte "
+"oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu "
+"forschen, die auf eine rechtswidrige Tätigkeit hinweisen."
+msgstr ""
+"Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf "
+"diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 "
+"TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte "
+"oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu "
+"forschen, die auf eine rechtswidrige Tätigkeit hinweisen."
+
+#: templates/pages/impressum.html:32
+msgid ""
+"Dieser Internetauftritt wird Ihnen von McMoe's Solutions bereitgestellt. Die "
+"Informationen, die durch diesen Internetauftritt über McMoe's Solutions "
+"sowie Dritte erhältlich sind, wurden mit größter Sorgfalt zusammengestellt. "
+"Eine Garantie für die Vollständigkeit, Richtigkeit und Aktualität dieser "
+"Informationen können wir jedoch nicht übernehmen. Wir übernehmen keine "
+"Haftung für Fehler in den Inhalten dieses Internetauftritts. McMoe's "
+"Solutions kann diese Website nach eigenem Ermessen jederzeit ohne "
+"Ankündigung ganz oder teilweise verändern und/oder deren Betrieb einstellen, "
+"und ist nicht dazu verpflichtet, die Website zu aktualisieren."
+msgstr ""
+"Dieser Internetauftritt wird Ihnen von McMoe's Solutions bereitgestellt. Die "
+"Informationen, die durch diesen Internetauftritt über McMoe's Solutions "
+"sowie Dritte erhältlich sind, wurden mit größter Sorgfalt zusammengestellt. "
+"Eine Garantie für die Vollständigkeit, Richtigkeit und Aktualität dieser "
+"Informationen können wir jedoch nicht übernehmen. Wir übernehmen keine "
+"Haftung für Fehler in den Inhalten dieses Internetauftritts. McMoe's "
+"Solutions kann diese Website nach eigenem Ermessen jederzeit ohne "
+"Ankündigung ganz oder teilweise verändern und/oder deren Betrieb einstellen, "
+"und ist nicht dazu verpflichtet, die Website zu aktualisieren."
+
+#: templates/pages/impressum.html:35
+msgid ""
+"Jegliche Haftung für Schäden, die direkt oder indirekt aus der Benutzung "
+"dieser Website entstehen, wird ausgeschlossen, soweit diese nicht auf "
+"Vorsatz oder grober Fahrlässigkeit beruhen."
+msgstr ""
+"Jegliche Haftung für Schäden, die direkt oder indirekt aus der Benutzung "
+"dieser Website entstehen, wird ausgeschlossen, soweit diese nicht auf "
+"Vorsatz oder grober Fahrlässigkeit beruhen."
+
+#: templates/pages/impressum.html:38
+msgid "Haftung für Links"
+msgstr "Haftung für Links"
+
+#: templates/pages/impressum.html:40
+msgid ""
+"Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte "
+"wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch "
+"keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der "
+"jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten "
+"Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße "
+"überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht "
+"erkennbar."
+msgstr ""
+"Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte "
+"wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch "
+"keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der "
+"jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten "
+"Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße "
+"überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht "
+"erkennbar."
+
+#: templates/pages/impressum.html:43
+msgid ""
+"Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne "
+"konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei "
+"Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend "
+"entfernen."
+msgstr ""
+"Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne "
+"konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei "
+"Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend "
+"entfernen."
+
+#: templates/pages/impressum.html:46
+msgid "Urheberrecht"
+msgstr "Urheberrecht"
+
+#: templates/pages/impressum.html:48
+msgid ""
+"Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten "
+"unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, "
+"Verbreitung und jede Art der Verwertung außerhalb der Grenzen des "
+"Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors "
+"bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den "
+"privaten, nicht kommerziellen Gebrauch gestattet."
+msgstr ""
+"Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten "
+"unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, "
+"Verbreitung und jede Art der Verwertung außerhalb der Grenzen des "
+"Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors "
+"bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den "
+"privaten, nicht kommerziellen Gebrauch gestattet."
+
+#: templates/pages/impressum.html:51
+msgid ""
+"Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, "
+"werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte "
+"Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine "
+"Urheberrechtsverletzung aufmerksam werden, bitten wir um einen "
+"entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir "
+"derartige Inhalte umgehend entfernen."
+msgstr ""
+"Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, "
+"werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte "
+"Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine "
+"Urheberrechtsverletzung aufmerksam werden, bitten wir um einen "
+"entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir "
+"derartige Inhalte umgehend entfernen."
 
 #: templates/pages/index.html:6
 msgid "Automate Your Vision with"

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "Impressum" %} | Bot Butler{% endblock %}
+
+{% block content %}
+<section class="features-section" style="padding-top: 6rem; padding-bottom: 4rem;">
+    <div class="features-container" style="max-width: 800px; text-align: left; background: var(--glass-bg); padding: 3rem; border-radius: 16px; border: 1px solid var(--border-subtle);">
+        <h1 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;"><span class="gradient-text">{% trans "Impressum" %}</span></h1>
+        
+        <div class="legal-content" style="color: var(--text-secondary); line-height: 1.8;">
+            <p><strong>{% trans "Angaben gemäß § 5 TMG" %}</strong></p>
+            <p>
+                <strong>McMoe’s Solutions</strong><br>
+                Inhaber: Markus Wirtz<br>
+                Dünner Str. 47<br>
+                41066 Mönchengladbach
+            </p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">{% trans "Kontakt" %}</h3>
+            <p>
+                Telefon: +49 152 12238329<br>
+                E-Mail: support@mcmoe.de
+            </p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">{% trans "Haftung für Inhalte" %}</h3>
+            <p>
+                {% trans "Bot Butler ist ein Projekt von McMoe's Solutions." %}
+                {% trans "Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen." %}
+            </p>
+            <p>
+                {% trans "Dieser Internetauftritt wird Ihnen von McMoe's Solutions bereitgestellt. Die Informationen, die durch diesen Internetauftritt über McMoe's Solutions sowie Dritte erhältlich sind, wurden mit größter Sorgfalt zusammengestellt. Eine Garantie für die Vollständigkeit, Richtigkeit und Aktualität dieser Informationen können wir jedoch nicht übernehmen. Wir übernehmen keine Haftung für Fehler in den Inhalten dieses Internetauftritts. McMoe's Solutions kann diese Website nach eigenem Ermessen jederzeit ohne Ankündigung ganz oder teilweise verändern und/oder deren Betrieb einstellen, und ist nicht dazu verpflichtet, die Website zu aktualisieren." %}
+            </p>
+            <p>
+                {% trans "Jegliche Haftung für Schäden, die direkt oder indirekt aus der Benutzung dieser Website entstehen, wird ausgeschlossen, soweit diese nicht auf Vorsatz oder grober Fahrlässigkeit beruhen." %}
+            </p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">{% trans "Haftung für Links" %}</h3>
+            <p>
+                {% trans "Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar." %}
+            </p>
+            <p>
+                {% trans "Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen." %}
+            </p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">{% trans "Urheberrecht" %}</h3>
+            <p>
+                {% trans "Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet." %}
+            </p>
+            <p>
+                {% trans "Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen." %}
+            </p>
+            <p style="margin-top: 2rem;">
+                 © Copyright {% now "Y" %} McMoe's Solutions, Inhaber Markus Wirtz (Deutschland). Alle Rechte vorbehalten.
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

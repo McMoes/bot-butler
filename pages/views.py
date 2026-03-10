@@ -19,6 +19,9 @@ class AgbView(TemplateView):
 class DatenschutzView(TemplateView):
     template_name = 'pages/datenschutz.html'
 
+class ImpressumView(TemplateView):
+    template_name = 'pages/impressum.html'
+
 class RegisterView(CreateView):
     form_class = UserCreationForm
     template_name = 'registration/register.html'
