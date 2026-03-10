@@ -76,13 +76,21 @@
         <div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
             <!-- Example 1 -->
             <div class="feature-card glass-card" style="padding: 1.5rem;">
+                {% if LANGUAGE_CODE == 'de' %}
+                <img src="{% static 'images/example_web_chatbot_de.png' %}" alt="Web Customer Support AI" style="width: 100%; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border-subtle);">
+                {% else %}
                 <img src="{% static 'images/example_web_chatbot.png' %}" alt="Web Customer Support AI" style="width: 100%; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border-subtle);">
+                {% endif %}
                 <h3>{% trans "Web Customer Support AI" %}</h3>
                 <p>{% trans "Ein intelligenter Chatbot integriert in deine Website, der 24/7 Kundenfragen beantwortet." %}</p>
             </div>
             <!-- Example 2 -->
             <div class="feature-card glass-card" style="padding: 1.5rem;">
+                {% if LANGUAGE_CODE == 'de' %}
+                <img src="{% static 'images/example_telegram_bot_de.png' %}" alt="Telegram Trading Bot" style="width: 100%; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border-subtle);">
+                {% else %}
                 <img src="{% static 'images/example_telegram_bot.png' %}" alt="Telegram Trading Bot" style="width: 100%; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border-subtle);">
+                {% endif %}
                 <h3>{% trans "Telegram Trading Bot" %}</h3>
                 <p>{% trans "Automatisierte Krypto-Analytics direkt auf dein Smartphone via Telegram." %}</p>
             </div>
