@@ -8,30 +8,6 @@
     <a href="#builder" class="btn-primary">{% trans "Start Building Now" %}</a>
 </section>
 
-<!-- Neu: Features Section -->
-<section id="features" class="features-section">
-    <div class="features-container">
-        <h2 class="section-title">{% trans "Why Bot Butler?" %}</h2>
-        <div class="feature-grid">
-            <div class="feature-card glass-card">
-                <div class="feature-icon">⚡</div>
-                <h3>{% trans "Instant Setup" %}</h3>
-                <p>{% trans "Deploy your custom bot via our Bot-as-a-Service model in minutes, not months." %}</p>
-            </div>
-            <div class="feature-card glass-card">
-                <div class="feature-icon">🧠</div>
-                <h3>{% trans "AI-Powered Logic" %}</h3>
-                <p>{% trans "Advanced language models integrated directly into your workflows for intelligent automation." %}</p>
-            </div>
-            <div class="feature-card glass-card">
-                <div class="feature-icon">🌐</div>
-                <h3>{% trans "Multi-Platform" %}</h3>
-                <p>{% trans "Native support for Telegram, Discord, and Web out of the box. Reach your users anywhere." %}</p>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- Neu: How it works (Ablaufbeschreibung) -->
 <section id="how-it-works" class="features-section" style="padding-top: 2rem;">
     <div class="features-container">
@@ -64,35 +40,6 @@
                 <div class="feature-icon">🚀</div>
                 <h3>{% trans "Bot nutzen" %}</h3>
                 <p>{% trans "Lade direkt deinen fertigen Code herunter oder verwalte deinen Live-Bot bequem in deinem Dashboard." %}</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Neu: Example Showcase -->
-<section id="examples" class="features-section" style="padding-top: 2rem; padding-bottom: 2rem;">
-    <div class="features-container">
-        <h2 class="section-title">{% trans "Beispiele unserer Arbeit" %}</h2>
-        <div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-            <!-- Example 1 -->
-            <div class="feature-card glass-card" style="padding: 1.5rem;">
-                {% if LANGUAGE_CODE == 'de' %}
-                <img src="{% static 'images/example_web_chatbot_de.png' %}" alt="Web Customer Support AI" style="width: 100%; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border-subtle);">
-                {% else %}
-                <img src="{% static 'images/example_web_chatbot.png' %}" alt="Web Customer Support AI" style="width: 100%; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border-subtle);">
-                {% endif %}
-                <h3>{% trans "Web Customer Support AI" %}</h3>
-                <p>{% trans "Ein intelligenter Chatbot integriert in deine Website, der 24/7 Kundenfragen beantwortet." %}</p>
-            </div>
-            <!-- Example 2 -->
-            <div class="feature-card glass-card" style="padding: 1.5rem;">
-                {% if LANGUAGE_CODE == 'de' %}
-                <img src="{% static 'images/example_telegram_bot_de.png' %}" alt="Telegram Trading Bot" style="width: 100%; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border-subtle);">
-                {% else %}
-                <img src="{% static 'images/example_telegram_bot.png' %}" alt="Telegram Trading Bot" style="width: 100%; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border-subtle);">
-                {% endif %}
-                <h3>{% trans "Telegram Trading Bot" %}</h3>
-                <p>{% trans "Automatisierte Krypto-Analytics direkt auf dein Smartphone via Telegram." %}</p>
             </div>
         </div>
     </div>
@@ -140,6 +87,59 @@
                     <input type="text" id="user-input" placeholder="{% trans 'Describe your bot requirements...' %}" onkeypress="handleKeyPress(event)">
                     <button class="btn-primary" onclick="sendMessage()">{% trans "Send" %}</button>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Neu: Features Section -->
+<section id="features" class="features-section">
+    <div class="features-container">
+        <h2 class="section-title">{% trans "Why Bot Butler?" %}</h2>
+        <div class="feature-grid">
+            <div class="feature-card glass-card">
+                <div class="feature-icon">⚡</div>
+                <h3>{% trans "Instant Setup" %}</h3>
+                <p>{% trans "Deploy your custom bot via our Bot-as-a-Service model in minutes, not months." %}</p>
+            </div>
+            <div class="feature-card glass-card">
+                <div class="feature-icon">🧠</div>
+                <h3>{% trans "AI-Powered Logic" %}</h3>
+                <p>{% trans "Advanced language models integrated directly into your workflows for intelligent automation." %}</p>
+            </div>
+            <div class="feature-card glass-card">
+                <div class="feature-icon">🌐</div>
+                <h3>{% trans "Multi-Platform" %}</h3>
+                <p>{% trans "Native support for Telegram, Discord, and Web out of the box. Reach your users anywhere." %}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Neu: Example Showcase -->
+<section id="examples" class="features-section" style="padding-top: 2rem; padding-bottom: 2rem;">
+    <div class="features-container">
+        <h2 class="section-title">{% trans "Beispiele unserer Arbeit" %}</h2>
+        <div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <!-- Example 1 -->
+            <div class="feature-card glass-card" style="padding: 1.5rem;">
+                {% if LANGUAGE_CODE == 'de' %}
+                <img src="{% static 'images/example_web_chatbot_de.png' %}" alt="Web Customer Support AI" style="width: 100%; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border-subtle);">
+                {% else %}
+                <img src="{% static 'images/example_web_chatbot.png' %}" alt="Web Customer Support AI" style="width: 100%; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border-subtle);">
+                {% endif %}
+                <h3>{% trans "Web Customer Support AI" %}</h3>
+                <p>{% trans "Ein intelligenter Chatbot integriert in deine Website, der 24/7 Kundenfragen beantwortet." %}</p>
+            </div>
+            <!-- Example 2 -->
+            <div class="feature-card glass-card" style="padding: 1.5rem;">
+                {% if LANGUAGE_CODE == 'de' %}
+                <img src="{% static 'images/example_telegram_bot_de.png' %}" alt="Telegram Trading Bot" style="width: 100%; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border-subtle);">
+                {% else %}
+                <img src="{% static 'images/example_telegram_bot.png' %}" alt="Telegram Trading Bot" style="width: 100%; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border-subtle);">
+                {% endif %}
+                <h3>{% trans "Telegram Trading Bot" %}</h3>
+                <p>{% trans "Automatisierte Krypto-Analytics direkt auf dein Smartphone via Telegram." %}</p>
             </div>
         </div>
     </div>
