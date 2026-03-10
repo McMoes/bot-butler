@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-10 11:17+0100\n"
+"POT-Creation-Date: 2026-03-10 11:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -160,9 +160,13 @@ msgstr "Premium Bot-as-a-Service Architektur angetrieben durch KI."
 msgid "Privacy Policy"
 msgstr "Datenschutz"
 
-#: templates/base.html:81
+#: templates/base.html:81 templates/pages/agb.html:4
 msgid "Terms of Service"
 msgstr "AGB"
+
+#: templates/pages/agb.html:9
+msgid "Allgemeine Geschäftsbedingungen"
+msgstr "Allgemeine Geschäftsbedingungen"
 
 #: templates/pages/bot_detail.html:13
 msgid "Bot Settings"
@@ -229,7 +233,7 @@ msgstr ""
 msgid "Describe your needed adjustment..."
 msgstr "Was soll dein Bot können?..."
 
-#: templates/pages/bot_detail.html:94 templates/pages/index.html:133
+#: templates/pages/bot_detail.html:94 templates/pages/index.html:141
 msgid "Send"
 msgstr "Senden"
 
@@ -389,11 +393,11 @@ msgstr ""
 msgid "Beispiele unserer Arbeit"
 msgstr "Beispiele unserer Arbeit"
 
-#: templates/pages/index.html:80
+#: templates/pages/index.html:84
 msgid "Web Customer Support AI"
 msgstr "Web Customer Support AI"
 
-#: templates/pages/index.html:81
+#: templates/pages/index.html:85
 msgid ""
 "Ein intelligenter Chatbot integriert in deine Website, der 24/7 Kundenfragen "
 "beantwortet."
@@ -401,21 +405,21 @@ msgstr ""
 "Ein intelligenter Chatbot integriert in deine Website, der 24/7 Kundenfragen "
 "beantwortet."
 
-#: templates/pages/index.html:86
+#: templates/pages/index.html:94
 msgid "Telegram Trading Bot"
 msgstr "Telegram Trading Bot"
 
-#: templates/pages/index.html:87
+#: templates/pages/index.html:95
 msgid ""
 "Automatisierte Krypto-Analytics direkt auf dein Smartphone via Telegram."
 msgstr ""
 "Automatisierte Krypto-Analytics direkt auf dein Smartphone via Telegram."
 
-#: templates/pages/index.html:96
+#: templates/pages/index.html:104
 msgid "AI Bot Architect"
 msgstr "Bot Butler KI"
 
-#: templates/pages/index.html:106
+#: templates/pages/index.html:114
 msgid ""
 "Hello! To get started, please select the type of automation bot you're "
 "looking for."
@@ -423,7 +427,7 @@ msgstr ""
 "Hallo! Um zu beginnen, wähle bitte die Art des Automatisierungs-Bots, den du "
 "suchst."
 
-#: templates/pages/index.html:132
+#: templates/pages/index.html:140
 msgid "Describe your bot requirements..."
 msgstr "Was soll dein Bot können?..."
 

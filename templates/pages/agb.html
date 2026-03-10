@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "Terms of Service" %} | Bot Butler{% endblock %}
+
+{% block content %}
+<section class="features-section" style="padding-top: 6rem; padding-bottom: 4rem;">
+    <div class="features-container" style="max-width: 800px; text-align: left; background: var(--glass-bg); padding: 3rem; border-radius: 16px; border: 1px solid var(--border-subtle);">
+        <h1 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;"><span class="gradient-text">{% trans "Allgemeine Geschäftsbedingungen" %}</span> (AGB)</h1>
+        
+        <div class="legal-content" style="color: var(--text-secondary); line-height: 1.8;">
+            <p><strong>Stand: {% now "F Y" %}</strong></p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">1. Geltungsbereich</h3>
+            <p>1.1 Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge, die über die Webseite des <strong>Bot Butler</strong> Dienstes zwischen <strong>McMoe’s Solutions, Inhaber Markus Wirtz</strong> (nachfolgend „Anbieter“) und den Kunden (nachfolgend „Kunde“) geschlossen werden.</p>
+            <p>1.2 Abweichende oder entgegenstehende Bedingungen des Kunden finden keine Anwendung, es sei denn, der Anbieter hat ihrer Geltung ausdrücklich zugestimmt.</p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">2. Vertragsgegenstand</h3>
+            <p>2.1 Der Anbieter bietet dem Kunden eine "Bot-as-a-Service" Lösung an. Dies umfasst die KI-gestützte Planung, Entwicklung und Bereitstellung von Automatisierungs-Bots (z.B. Telegram, Discord, Web Chatbots).</p>
+            <p>2.2 Dem Kunden stehen grundsätzlich zwei Bereitstellungsmodelle zur Verfügung: Der Kauf des reinen Quellcodes ("Code-Only") zur Eigennutzung oder die Inanspruchnahme eines verwalteten Hostings ("Managed Hosting") gegen eine monatliche Gebühr.</p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">3. Vertragsabschluss</h3>
+            <p>3.1 Der Kunde kann auf der Webseite durch Interaktion mit dem AI Bot Architect Parameter für seinen gewünschten Bot festlegen. Mit dem Abschluss der Bestellung und Zahlung über den integrierten Zahlungsdienstleister (z.B. Stripe) gibt der Kunde ein verbindliches Angebot zum Abschluss eines Vertrages ab.</p>
+            <p>3.2 Der Vertrag kommt zustande, sobald der Anbieter dem Kunden eine Bestellbestätigung per E-Mail zusendet und das Projekt im Kunden-Dashboard freischaltet.</p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">4. Leistungsbeschreibung und -erbringung</h3>
+            <p>4.1 Der Anbieter verpflichtet sich, den Bot gemäß den durch die KI erfassten und im Kunden-Dashboard festgehaltenen Anforderungen ("Original Requirements") zu entwickeln und auszuliefern.</p>
+            <p>4.2 Bei der Option "Code-Only" gilt die Leistung mit der Übermittlung oder dem Download-Angebot des Quellcodes als erbracht. Bei "Managed Hosting" stellt der Anbieter den Bot auf eigenen Servern bereit und hält ihn funktionstüchtig.</p>
+            <p>4.3 Nachträgliche Änderungswünsche oder Erweiterungen ("Adjustments") können über das Dashboard angefragt werden und erfordern ggf. ein neues, separates Angebot.</p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">5. Pflichten des Kunden</h3>
+            <p>5.1 Der Kunde ist verpflichtet, korrekte und vollständige Angaben zu machen. Bei selbst gehosteten Bots ist der Kunde für die Beschaffung von notwendigen API-Schlüsseln (z.B. Telegram Bot Token, OpenAI/Gemini API-Keys) selbst verantwortlich.</p>
+            <p>5.2 Der Kunde verpflichtet sich, die durch den Anbieter erstellten Bots nicht für rechtswidrige, missbräuchliche, diskriminierende oder schädliche Zwecke einzusetzen.</p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">6. Rücktritt und Stornierung</h3>
+            <p>6.1 <strong>Digitale Güter:</strong> Da es sich beim reinen Quellcode ("Code-Only") um digitale Inhalte handelt, erlischt das Widerrufsrecht, sobald mit der Ausführung des Vertrags (z.B. durch Bereitstellung des Downloads) begonnen wurde, sofern der Kunde dem vorab ausdrücklich zugestimmt hat.</p>
+            <p>6.2 <strong>Abonnements:</strong> Abonnements für "Managed Hosting" können gemäß den beim Kauf angegebenen Fristen (i.d.R. monatlich) im Dashboard oder über das Kundenportal des Zahlungsdienstleisters gekündigt werden.</p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">7. Haftung</h3>
+            <p>7.1 Der Anbieter haftet nur für Vorsatz und grobe Fahrlässigkeit. Im Übrigen ist die Haftung des Anbieters ausgeschlossen.</p>
+            <p>7.2 Der Anbieter übernimmt keine Haftung für Ausfälle von Drittanbieter-Schnittstellen (wie Telegram, Discord oder externen KI-APIs), die außerhalb des Einflussbereichs des Anbieters liegen.</p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">8. Datenschutz</h3>
+            <p>8.1 Der Anbieter verarbeitet personenbezogene Daten des Kunden ausschließlich zur Erfüllung der vertraglichen Pflichten. Die Datenschutzbestimmungen sind in der Datenschutzerklärung einsehbar.</p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">9. Schlussbestimmungen</h3>
+            <p>9.1 Es gilt das Recht der Bundesrepublik Deutschland.</p>
+            <p>9.2 Sollten einzelne Bestimmungen dieser AGB unwirksam sein, so bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
+            <p>9.3 Gerichtsstand ist der Sitz des Anbieters, sofern der Kunde Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches Sondervermögen ist.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

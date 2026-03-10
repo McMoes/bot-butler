@@ -13,6 +13,9 @@ class IndexView(TemplateView):
         context['categories'] = BotCategory.objects.filter(is_active=True)
         return context
 
+class AgbView(TemplateView):
+    template_name = 'pages/agb.html'
+
 class RegisterView(CreateView):
     form_class = UserCreationForm
     template_name = 'registration/register.html'
