@@ -1,0 +1,415 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-10 10:51+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: bots/models.py:8
+msgid "Category Name"
+msgstr ""
+
+#: bots/models.py:9
+msgid "Description"
+msgstr ""
+
+#: bots/models.py:11
+msgid "Base Price (€)"
+msgstr ""
+
+#: bots/models.py:12
+msgid "Active"
+msgstr ""
+
+#: bots/models.py:15 bots/models.py:31
+msgid "Bot Category"
+msgstr ""
+
+#: bots/models.py:16
+msgid "Bot Categories"
+msgstr ""
+
+#: bots/models.py:29
+msgid "Order ID"
+msgstr ""
+
+#: bots/models.py:30
+msgid "User"
+msgstr ""
+
+#: bots/models.py:34
+msgid "AI Generated Requirements"
+msgstr ""
+
+#: bots/models.py:35
+msgid "Consulting Upsell Selected"
+msgstr ""
+
+#: bots/models.py:36
+msgid "Contact Information"
+msgstr ""
+
+#: bots/models.py:39
+msgid "Total Price (€)"
+msgstr ""
+
+#: bots/models.py:40 templates/pages/bot_detail.html:34
+msgid "Managed Hosting"
+msgstr ""
+
+#: bots/models.py:41
+msgid "Monthly Hosting Fee (€)"
+msgstr ""
+
+#: bots/models.py:44 templates/pages/bot_detail.html:17
+msgid "Status"
+msgstr ""
+
+#: bots/models.py:45
+msgid "Draft File Path"
+msgstr ""
+
+#: bots/models.py:46
+msgid "Source Code URL/Path"
+msgstr ""
+
+#: bots/models.py:46
+msgid "Link to the clean source code for non-hosted bots"
+msgstr ""
+
+#: bots/models.py:47
+msgid "Bot Active"
+msgstr ""
+
+#: bots/models.py:47
+msgid "Toggle bot status on or off"
+msgstr ""
+
+#: bots/models.py:53
+msgid "Bot Order"
+msgstr ""
+
+#: bots/models.py:54
+msgid "Bot Orders"
+msgstr ""
+
+#: bots/models.py:71
+msgid "Adjustment Request"
+msgstr ""
+
+#: bots/models.py:76
+msgid "Bot Adjustment"
+msgstr ""
+
+#: bots/models.py:77
+msgid "Bot Adjustments"
+msgstr ""
+
+#: config/settings.py:126
+msgid "German"
+msgstr ""
+
+#: config/settings.py:127
+msgid "English"
+msgstr ""
+
+#: templates/base.html:28
+msgid "Features"
+msgstr ""
+
+#: templates/base.html:29
+msgid "Build Your Bot"
+msgstr ""
+
+#: templates/base.html:36
+msgid "Logout"
+msgstr ""
+
+#: templates/base.html:40 templates/registration/login.html:13
+msgid "Login"
+msgstr ""
+
+#: templates/base.html:41 templates/registration/register.html:13
+msgid "Register"
+msgstr ""
+
+#: templates/base.html:76
+msgid "Premium Bot-as-a-Service architecture powered by AI."
+msgstr ""
+
+#: templates/base.html:79
+msgid "Privacy Policy"
+msgstr ""
+
+#: templates/base.html:80
+msgid "Terms of Service"
+msgstr ""
+
+#: templates/pages/bot_detail.html:13
+msgid "Bot Settings"
+msgstr ""
+
+#: templates/pages/bot_detail.html:21 templates/pages/bot_detail.html:114
+msgid "Active & Listening"
+msgstr ""
+
+#: templates/pages/bot_detail.html:21 templates/pages/bot_detail.html:114
+msgid "Paused"
+msgstr ""
+
+#: templates/pages/bot_detail.html:23
+msgid "Code Delivered"
+msgstr ""
+
+#: templates/pages/bot_detail.html:31
+msgid "Hosting Model"
+msgstr ""
+
+#: templates/pages/bot_detail.html:36 templates/pages/dashboard.html:37
+msgid "Self-Hosted (Code Only)"
+msgstr ""
+
+#: templates/pages/bot_detail.html:52
+msgid "Download Source Code"
+msgstr ""
+
+#: templates/pages/bot_detail.html:54
+msgid "Code will be uploaded shortly."
+msgstr ""
+
+#: templates/pages/bot_detail.html:61
+msgid "Original Requirements"
+msgstr ""
+
+#: templates/pages/bot_detail.html:67
+msgid "Back to Dashboard"
+msgstr ""
+
+#: templates/pages/bot_detail.html:73
+msgid "Adjustments & Upsells"
+msgstr ""
+
+#: templates/pages/bot_detail.html:74
+msgid "Support Team"
+msgstr ""
+
+#: templates/pages/bot_detail.html:80
+msgid ""
+"Hello! If you need any adjustments, extra features, or integrations for this "
+"bot, please describe them here. We will review your request and provide a "
+"quote."
+msgstr ""
+
+#: templates/pages/bot_detail.html:93
+msgid "Describe your needed adjustment..."
+msgstr ""
+
+#: templates/pages/bot_detail.html:94 templates/pages/index.html:112
+msgid "Send"
+msgstr ""
+
+#: templates/pages/bot_detail.html:130
+msgid "Failed to update bot status."
+msgstr ""
+
+#: templates/pages/dashboard.html:6
+msgid "Your"
+msgstr ""
+
+#: templates/pages/dashboard.html:6
+msgid "Command Center."
+msgstr ""
+
+#: templates/pages/dashboard.html:7
+msgid ""
+"Manage your active bots, view invoices, and request custom integrations."
+msgstr ""
+
+#: templates/pages/dashboard.html:11
+msgid "My Bots"
+msgstr ""
+
+#: templates/pages/dashboard.html:33
+msgid "Price:"
+msgstr ""
+
+#: templates/pages/dashboard.html:35 templates/pages/dashboard.html:37
+msgid "Hosting:"
+msgstr ""
+
+#: templates/pages/dashboard.html:39
+msgid "Ordered:"
+msgstr ""
+
+#: templates/pages/dashboard.html:42
+msgid "Manage Bot"
+msgstr ""
+
+#: templates/pages/dashboard.html:46
+msgid "You haven't ordered any bots yet."
+msgstr ""
+
+#: templates/pages/dashboard.html:47
+msgid "Build Your First Bot"
+msgstr ""
+
+#: templates/pages/index.html:6
+msgid "Automate Your Vision with"
+msgstr ""
+
+#: templates/pages/index.html:6
+msgid "AI Precision."
+msgstr ""
+
+#: templates/pages/index.html:7
+msgid ""
+"Select your bot category, tell our AI what you need, and receive a fully "
+"tailored Bot-as-a-Service solution integrated instantly."
+msgstr ""
+
+#: templates/pages/index.html:8
+msgid "Start Building Now"
+msgstr ""
+
+#: templates/pages/index.html:14
+msgid "Why Bot Butler?"
+msgstr ""
+
+#: templates/pages/index.html:18
+msgid "Instant Setup"
+msgstr ""
+
+#: templates/pages/index.html:19
+msgid ""
+"Deploy your custom bot via our Bot-as-a-Service model in minutes, not months."
+msgstr ""
+
+#: templates/pages/index.html:23
+msgid "AI-Powered Logic"
+msgstr ""
+
+#: templates/pages/index.html:24
+msgid ""
+"Advanced language models integrated directly into your workflows for "
+"intelligent automation."
+msgstr ""
+
+#: templates/pages/index.html:28
+msgid "Multi-Platform"
+msgstr ""
+
+#: templates/pages/index.html:29
+msgid ""
+"Native support for Telegram, Discord, and Web out of the box. Reach your "
+"users anywhere."
+msgstr ""
+
+#: templates/pages/index.html:38
+msgid "So funktioniert's"
+msgstr "How It Works"
+
+#: templates/pages/index.html:44
+msgid "Wünsche äußern"
+msgstr "Describe Your Needs"
+
+#: templates/pages/index.html:45
+msgid ""
+"Beschreibe unserem KI-Butler in wenigen Sätzen, was dein Bot können soll und "
+"welche Plattform du bevorzugst."
+msgstr ""
+"Share your requirements with our AI Butler in a few sentences, and let us know "
+"your preferred platform."
+
+#: templates/pages/index.html:51
+msgid "Kalkulation erhalten"
+msgstr "Get Your Quote"
+
+#: templates/pages/index.html:52
+msgid ""
+"Die KI analysiert deine Anforderungen in Echtzeit und erstellt dir sofort "
+"ein passendes Festpreisangebot."
+msgstr ""
+"Our AI instantly analyzes your requirements and provides a custom, "
+"fixed-price quote on the spot."
+
+#: templates/pages/index.html:58
+msgid "Auswahl & Kauf"
+msgstr "Select & Checkout"
+
+#: templates/pages/index.html:59
+msgid ""
+"Wähle flexibel zwischen dem reinen Quellcode (Code-Only) oder unserem "
+"bequemen Managed Hosting."
+msgstr ""
+"Choose flexibly between purchasing the pure source code (Code-Only) or "
+"our hassle-free Managed Hosting."
+
+#: templates/pages/index.html:65
+msgid "Bot nutzen"
+msgstr "Deploy & Use"
+
+#: templates/pages/index.html:66
+msgid ""
+"Lade direkt deinen fertigen Code herunter oder verwalte deinen Live-Bot "
+"bequem in deinem Dashboard."
+msgstr ""
+"Download your ready-to-run code immediately, or manage your live bot "
+"seamlessly straight from your dashboard."
+
+#: templates/pages/index.html:75
+msgid "AI Bot Architect"
+msgstr ""
+
+#: templates/pages/index.html:85
+msgid ""
+"Hello! To get started, please select the type of automation bot you're "
+"looking for."
+msgstr ""
+
+#: templates/pages/index.html:111
+msgid "Describe your bot requirements..."
+msgstr ""
+
+#: templates/registration/login.html:4
+msgid "Login - Bot Butler"
+msgstr ""
+
+#: templates/registration/login.html:9
+msgid "Welcome Back"
+msgstr ""
+
+#: templates/registration/login.html:16
+msgid "Don't have an account?"
+msgstr ""
+
+#: templates/registration/login.html:17
+msgid "Register here"
+msgstr ""
+
+#: templates/registration/register.html:4
+msgid "Register - Bot Butler"
+msgstr ""
+
+#: templates/registration/register.html:9
+msgid "Create an Account"
+msgstr ""
+
+#: templates/registration/register.html:16
+msgid "Already have an account?"
+msgstr ""
+
+#: templates/registration/register.html:17
+msgid "Login here"
+msgstr ""
