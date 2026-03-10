@@ -25,7 +25,7 @@
     /* Premium Light Theme Core */
     --bg-base: #f8fafc;
     --bg-surface: rgba(255, 255, 255, 0.7);
-    --border-subtle: rgba(0, 0, 0, 0.08);
+    --border-subtle: rgba(0, 0, 0, 0.15);
     
     /* Typography */
     --text-primary: #0f172a;
