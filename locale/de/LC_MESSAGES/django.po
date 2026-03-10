@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-10 10:56+0100\n"
+"POT-Creation-Date: 2026-03-10 11:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -229,7 +229,7 @@ msgstr ""
 msgid "Describe your needed adjustment..."
 msgstr "Was soll dein Bot können?..."
 
-#: templates/pages/bot_detail.html:94 templates/pages/index.html:112
+#: templates/pages/bot_detail.html:94 templates/pages/index.html:133
 msgid "Send"
 msgstr "Senden"
 
@@ -386,10 +386,36 @@ msgid ""
 msgstr ""
 
 #: templates/pages/index.html:75
+msgid "Beispiele unserer Arbeit"
+msgstr "Beispiele unserer Arbeit"
+
+#: templates/pages/index.html:80
+msgid "Web Customer Support AI"
+msgstr "Web Customer Support AI"
+
+#: templates/pages/index.html:81
+msgid ""
+"Ein intelligenter Chatbot integriert in deine Website, der 24/7 Kundenfragen "
+"beantwortet."
+msgstr ""
+"Ein intelligenter Chatbot integriert in deine Website, der 24/7 Kundenfragen "
+"beantwortet."
+
+#: templates/pages/index.html:86
+msgid "Telegram Trading Bot"
+msgstr "Telegram Trading Bot"
+
+#: templates/pages/index.html:87
+msgid ""
+"Automatisierte Krypto-Analytics direkt auf dein Smartphone via Telegram."
+msgstr ""
+"Automatisierte Krypto-Analytics direkt auf dein Smartphone via Telegram."
+
+#: templates/pages/index.html:96
 msgid "AI Bot Architect"
 msgstr "Bot Butler KI"
 
-#: templates/pages/index.html:85
+#: templates/pages/index.html:106
 msgid ""
 "Hello! To get started, please select the type of automation bot you're "
 "looking for."
@@ -397,7 +423,7 @@ msgstr ""
 "Hallo! Um zu beginnen, wähle bitte die Art des Automatisierungs-Bots, den du "
 "suchst."
 
-#: templates/pages/index.html:111
+#: templates/pages/index.html:132
 msgid "Describe your bot requirements..."
 msgstr "Was soll dein Bot können?..."
 

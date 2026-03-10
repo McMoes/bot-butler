@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-10 10:56+0100\n"
+"POT-Creation-Date: 2026-03-10 11:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -221,7 +221,7 @@ msgstr ""
 msgid "Describe your needed adjustment..."
 msgstr ""
 
-#: templates/pages/bot_detail.html:94 templates/pages/index.html:112
+#: templates/pages/bot_detail.html:94 templates/pages/index.html:133
 msgid "Send"
 msgstr ""
 
@@ -374,16 +374,42 @@ msgstr ""
 "seamlessly straight from your dashboard."
 
 #: templates/pages/index.html:75
+msgid "Beispiele unserer Arbeit"
+msgstr "Examples of our Work"
+
+#: templates/pages/index.html:80
+msgid "Web Customer Support AI"
+msgstr "Web Customer Support AI"
+
+#: templates/pages/index.html:81
+msgid ""
+"Ein intelligenter Chatbot integriert in deine Website, der 24/7 Kundenfragen "
+"beantwortet."
+msgstr ""
+"An intelligent chatbot integrated into your website, answering customer "
+"questions 24/7."
+
+#: templates/pages/index.html:86
+msgid "Telegram Trading Bot"
+msgstr "Telegram Trading Bot"
+
+#: templates/pages/index.html:87
+msgid ""
+"Automatisierte Krypto-Analytics direkt auf dein Smartphone via Telegram."
+msgstr ""
+"Automated crypto analytics delivered directly to your smartphone via Telegram."
+
+#: templates/pages/index.html:96
 msgid "AI Bot Architect"
 msgstr ""
 
-#: templates/pages/index.html:85
+#: templates/pages/index.html:106
 msgid ""
 "Hello! To get started, please select the type of automation bot you're "
 "looking for."
 msgstr ""
 
-#: templates/pages/index.html:111
+#: templates/pages/index.html:132
 msgid "Describe your bot requirements..."
 msgstr ""
 

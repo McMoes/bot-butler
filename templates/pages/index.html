@@ -69,6 +69,27 @@
     </div>
 </section>
 
+<!-- Neu: Example Showcase -->
+<section id="examples" class="features-section" style="padding-top: 2rem; padding-bottom: 2rem;">
+    <div class="features-container">
+        <h2 class="section-title">{% trans "Beispiele unserer Arbeit" %}</h2>
+        <div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <!-- Example 1 -->
+            <div class="feature-card glass-card" style="padding: 1.5rem;">
+                <img src="{% static 'images/example_web_chatbot.png' %}" alt="Web Customer Support AI" style="width: 100%; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border-subtle);">
+                <h3>{% trans "Web Customer Support AI" %}</h3>
+                <p>{% trans "Ein intelligenter Chatbot integriert in deine Website, der 24/7 Kundenfragen beantwortet." %}</p>
+            </div>
+            <!-- Example 2 -->
+            <div class="feature-card glass-card" style="padding: 1.5rem;">
+                <img src="{% static 'images/example_telegram_bot.png' %}" alt="Telegram Trading Bot" style="width: 100%; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border-subtle);">
+                <h3>{% trans "Telegram Trading Bot" %}</h3>
+                <p>{% trans "Automatisierte Krypto-Analytics direkt auf dein Smartphone via Telegram." %}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section id="builder" class="builder-section">
     <div class="builder-ui">
         <div class="builder-header">
