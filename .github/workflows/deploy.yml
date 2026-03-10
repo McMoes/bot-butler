@@ -45,5 +45,11 @@ jobs:
             # Start production containers (Gunicorn) with fresh code
             docker-compose -f docker-compose.prod.yml up -d
 
+            # Prevent 502 Bad Gateway instances by explicitly enforcing shared network connection
+            sudo docker network connect shared-net bot_butler-nginx-1 || true
+
+            # Flush Nginx Proxy Manager DNS cache
+            sudo docker restart npm-app-1 || true
+
             # Clean up old images
             docker image prune -a -f
