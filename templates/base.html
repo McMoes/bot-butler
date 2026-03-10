@@ -1,4 +1,4 @@
-{% load i18n static %}
+{% load i18n static bot_butler_tags %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
@@ -47,7 +47,7 @@
                     {% get_available_languages as LANGUAGES %}
                     {% for lang in LANGUAGES %}
                         {% if lang.0 != LANGUAGE_CODE %}
-                            <a href="/{{ lang.0 }}/" class="lang-btn">
+                            <a href="{% change_lang lang.0 %}" class="lang-btn" onclick="this.href += window.location.hash;">
                                 {% if lang.0 == 'de' %}
                                 <span class="fi fi-de" style="margin-right:0.5rem;"></span> DE
                                 {% elif lang.0 == 'en' %}
