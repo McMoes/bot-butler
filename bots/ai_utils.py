@@ -149,9 +149,9 @@ def get_landing_page_support_response(chat_history: list) -> str:
     Wir bauen professionelle KIs (Telegram Bots, Discord Bots, Web-Chatbots).
     Kunden haben die Wahl zwischen Hosting-Abonnements:
     - Code Only (Self-Hosted): 0€/Monat
-    - Starter Hosted: 29€/Monat (500 Nachrichten)
-    - Pro Hosted: 59€/Monat (2.500 Nachrichten)
-    - Ultra Hosted: 99€/Monat (10.000 Nachrichten)
+    - Starter Hosted: 19€/Monat (500 Nachrichten)
+    - Pro Hosted: 49€/Monat (2.500 Nachrichten)
+    - Ultra Hosted: 89€/Monat (10.000 Nachrichten)
     
     WICHTIGE REGELN DIESES BOT:
     1. Du schreibst und programmierst NIEMALS Code. Lehne ALLE Programmierfragen strikt ab.
