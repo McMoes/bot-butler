@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Bot Butler Blog - AI Automation Insights" %}{% endblock %}
+
+{% block content %}
+<section class="features-section" style="padding-top: 6rem; padding-bottom: 4rem;">
+    <div class="features-container" style="max-width: 1000px;">
+        <h1 style="margin-bottom: 3rem; font-size: 2.5rem; text-align: center;">
+            <span class="gradient-text">{% trans "Insights & News" %}</span>
+        </h1>
+        
+        <div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            {% for post in posts %}
+            <a href="{{ post.get_absolute_url }}" style="text-decoration: none; color: inherit; display: block;">
+                <div class="feature-card glass-card" style="padding: 0; overflow: hidden; height: 100%; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    {% if post.featured_image %}
+                    <div style="height: 200px; overflow: hidden;">
+                        <img src="{{ post.featured_image.url }}" alt="{{ post.display_image_alt }}" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                    </div>
+                    {% else %}
+                    <div style="height: 200px; background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(45, 212, 191, 0.2)); display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 3rem; color: rgba(255,255,255,0.5);">📝</span>
+                    </div>
+                    {% endif %}
+                    <div style="padding: 1.5rem; text-align: left;">
+                        <span style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 0.5rem;">
+                            {{ post.published_at|date:"d.m.Y" }} | {{ post.author }}
+                        </span>
+                        <h3 style="margin-bottom: 1rem; color: var(--text-primary);">{{ post.display_title }}</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5;">
+                            {{ post.display_meta_description|truncatewords:20 }}
+                        </p>
+                    </div>
+                </div>
+            </a>
+            {% empty %}
+            <div class="glass-card" style="padding: 3rem; text-align: center; grid-column: 1 / -1;">
+                <p>{% trans "No blog posts published yet. Check back soon!" %}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if is_paginated %}
+        <div class="pagination" style="margin-top: 3rem; text-align: center;">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">&laquo; {% trans "Previous" %}</a>
+            {% endif %}
+            <span style="margin: 0 1rem; color: var(--text-secondary);">
+                {% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}
+            </span>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">{% trans "Next" %} &raquo;</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

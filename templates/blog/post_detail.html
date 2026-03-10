@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{{ post.display_meta_title }} | Bot Butler{% endblock %}
+
+{% block extra_head %}
+<meta name="description" content="{{ post.display_meta_description }}">
+<meta name="keywords" content="{{ post.safe_translation_getter|default:'' }}">
+<meta property="og:title" content="{{ post.display_meta_title }}">
+<meta property="og:description" content="{{ post.display_meta_description }}">
+<meta property="og:type" content="article">
+{% if not post.is_indexable %}
+<meta name="robots" content="noindex, nofollow">
+{% endif %}
+{% if post.featured_image %}
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.featured_image.url }}">
+{% endif %}
+
+<script type="application/ld+json">
+{{ post.get_json_ld|safe }}
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="features-section" style="padding-top: 6rem; padding-bottom: 4rem;">
+    <div class="features-container" style="max-width: 800px; text-align: left;">
+        
+        <a href="{% url 'blog:post_list' %}" style="color: var(--text-secondary); text-decoration: none; display: inline-block; margin-bottom: 2rem; font-size: 0.9rem;">
+            &larr; {% trans "Back to Blog" %}
+        </a>
+
+        {% if post.featured_image %}
+        <div style="width: 100%; border-radius: 12px; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid var(--border-subtle);">
+            <img src="{{ post.featured_image.url }}" alt="{{ post.display_image_alt }}" style="width: 100%; height: auto; display: block;">
+        </div>
+        {% endif %}
+
+        <span style="font-size: 0.9rem; color: var(--gradient-text); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 1rem; font-weight: 500;">
+            {{ post.published_at|date:"F j, Y" }} | {% trans "By" %} {{ post.author }}
+        </span>
+
+        <h1 style="color: var(--text-primary); font-size: 3rem; margin-bottom: 2rem; line-height: 1.2;">{{ post.display_title }}</h1>
+
+        <div class="legal-content" style="color: var(--text-secondary); line-height: 1.8; font-size: 1.1rem;">
+            {{ post.display_content|linebreaks }}
+        </div>
+
+    </div>
+</section>
+{% endblock %}

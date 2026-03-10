@@ -28,6 +28,7 @@
                 <a href="/#features">{% trans "Features" %}</a>
                 <a href="/#how-it-works">{% trans "How it works" %}</a>
                 <a href="/#builder">{% trans "Build Your Bot" %}</a>
+                <a href="{% url 'blog:post_list' %}">{% trans "Blog" %}</a>
                 
                 {% if user.is_authenticated %}
                 <div style="display: flex; align-items: center; margin-left: 2rem;">
