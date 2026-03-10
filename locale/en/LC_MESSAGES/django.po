@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-10 10:51+0100\n"
+"POT-Creation-Date: 2026-03-10 10:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: bots/models.py:8
 msgid "Category Name"
 msgstr ""
@@ -130,30 +131,34 @@ msgid "Features"
 msgstr ""
 
 #: templates/base.html:29
+msgid "How it works"
+msgstr "How It Works"
+
+#: templates/base.html:30
 msgid "Build Your Bot"
 msgstr ""
 
-#: templates/base.html:36
+#: templates/base.html:37
 msgid "Logout"
 msgstr ""
 
-#: templates/base.html:40 templates/registration/login.html:13
+#: templates/base.html:41 templates/registration/login.html:13
 msgid "Login"
 msgstr ""
 
-#: templates/base.html:41 templates/registration/register.html:13
+#: templates/base.html:42 templates/registration/register.html:13
 msgid "Register"
 msgstr ""
 
-#: templates/base.html:76
+#: templates/base.html:77
 msgid "Premium Bot-as-a-Service architecture powered by AI."
 msgstr ""
 
-#: templates/base.html:79
+#: templates/base.html:80
 msgid "Privacy Policy"
 msgstr ""
 
-#: templates/base.html:80
+#: templates/base.html:81
 msgid "Terms of Service"
 msgstr ""
 
@@ -329,8 +334,8 @@ msgid ""
 "Beschreibe unserem KI-Butler in wenigen Sätzen, was dein Bot können soll und "
 "welche Plattform du bevorzugst."
 msgstr ""
-"Share your requirements with our AI Butler in a few sentences, and let us know "
-"your preferred platform."
+"Share your requirements with our AI Butler in a few sentences, and let us "
+"know your preferred platform."
 
 #: templates/pages/index.html:51
 msgid "Kalkulation erhalten"
@@ -341,8 +346,8 @@ msgid ""
 "Die KI analysiert deine Anforderungen in Echtzeit und erstellt dir sofort "
 "ein passendes Festpreisangebot."
 msgstr ""
-"Our AI instantly analyzes your requirements and provides a custom, "
-"fixed-price quote on the spot."
+"Our AI instantly analyzes your requirements and provides a custom, fixed-"
+"price quote on the spot."
 
 #: templates/pages/index.html:58
 msgid "Auswahl & Kauf"
@@ -353,8 +358,8 @@ msgid ""
 "Wähle flexibel zwischen dem reinen Quellcode (Code-Only) oder unserem "
 "bequemen Managed Hosting."
 msgstr ""
-"Choose flexibly between purchasing the pure source code (Code-Only) or "
-"our hassle-free Managed Hosting."
+"Choose flexibly between purchasing the pure source code (Code-Only) or our "
+"hassle-free Managed Hosting."
 
 #: templates/pages/index.html:65
 msgid "Bot nutzen"
