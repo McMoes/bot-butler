@@ -158,7 +158,7 @@ msgstr "Premium Bot-as-a-Service Architektur angetrieben durch KI."
 
 #: templates/base.html:80
 msgid "Legal Notice"
-msgstr ""
+msgstr "Impressum"
 
 #: templates/base.html:81 templates/pages/datenschutz.html:4
 msgid "Privacy Policy"
