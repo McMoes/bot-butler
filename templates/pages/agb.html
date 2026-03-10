@@ -4,13 +4,53 @@
 {% block title %}{% trans "Terms of Service" %} | Bot Butler{% endblock %}
 
 {% block content %}
+{% get_current_language as LANGUAGE_CODE %}
 <section class="features-section" style="padding-top: 6rem; padding-bottom: 4rem;">
     <div class="features-container" style="max-width: 800px; text-align: left; background: var(--glass-bg); padding: 3rem; border-radius: 16px; border: 1px solid var(--border-subtle);">
-        <h1 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;"><span class="gradient-text">{% trans "Allgemeine Geschäftsbedingungen" %}</span> (AGB)</h1>
+        <h1 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;"><span class="gradient-text">{% trans "Terms of Service" %}</span></h1>
         
         <div class="legal-content" style="color: var(--text-secondary); line-height: 1.8;">
-            <p><strong>Stand: {% now "F Y" %}</strong></p>
+            <p><strong>{% if LANGUAGE_CODE == 'en' %}Last Updated{% else %}Stand{% endif %}: {% now "F Y" %}</strong></p>
 
+            {% if LANGUAGE_CODE == 'en' %}
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">1. Scope of Application</h3>
+            <p>1.1 These Terms of Service (ToS) apply to all contracts concluded via the website of the <strong>Bot Butler</strong> service between <strong>McMoe’s Solutions, owner Markus Wirtz</strong> (hereinafter "Provider") and the customers (hereinafter "Customer").</p>
+            <p>1.2 Deviating or conflicting terms and conditions of the Customer shall not apply unless the Provider has expressly agreed to their validity.</p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">2. Subject Matter of the Contract</h3>
+            <p>2.1 The Provider offers the Customer a "Bot-as-a-Service" solution. This includes the AI-supported planning, development, and provision of automation bots (e.g., Telegram, Discord, Web Chatbots).</p>
+            <p>2.2 The Customer generally has two deployment models available: The purchase of the pure source code ("Code-Only") for personal use, or the utilization of managed hosting ("Managed Hosting") for a monthly fee.</p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">3. Conclusion of the Contract</h3>
+            <p>3.1 The Customer can set parameters for their desired bot by interacting with the AI Bot Architect on the website. By completing the order and making payment via the integrated payment service provider (e.g., Stripe), the Customer submits a binding offer to conclude a contract.</p>
+            <p>3.2 The contract is concluded as soon as the Provider sends the Customer an order confirmation by e-mail and activates the project in the Customer Dashboard.</p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">4. Service Description and Provision</h3>
+            <p>4.1 The Provider undertakes to develop and deliver the bot according to the requirements recorded by the AI and documented in the Customer Dashboard ("Original Requirements").</p>
+            <p>4.2 With the "Code-Only" option, the service is considered rendered upon transmission or the provision of a download link for the source code. With "Managed Hosting", the Provider deploys the bot on its own servers and ensures its functionality.</p>
+            <p>4.3 Subsequent change requests or extensions ("Adjustments") can be requested via the Dashboard and may require a new, separate offer.</p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">5. Obligations of the Customer</h3>
+            <p>5.1 The Customer is obliged to provide correct and complete information. For self-hosted bots, the Customer is solely responsible for obtaining necessary API keys (e.g., Telegram Bot Token, OpenAI/Gemini API-Keys).</p>
+            <p>5.2 The Customer undertakes not to use the bots created by the Provider for illegal, abusive, discriminatory, or harmful purposes.</p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">6. Withdrawal and Cancellation</h3>
+            <p>6.1 <strong>Digital Goods:</strong> Since the pure source code ("Code-Only") constitutes digital content, the right of withdrawal expires as soon as the execution of the contract (e.g., by providing the download) has begun, provided the Customer has expressly agreed to this in advance.</p>
+            <p>6.2 <strong>Subscriptions:</strong> Subscriptions for "Managed Hosting" can be canceled according to the terms specified at the time of purchase (usually monthly) via the Dashboard or the payment service provider's customer portal.</p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">7. Liability</h3>
+            <p>7.1 The Provider's liability is limited to intent and gross negligence. Otherwise, the Provider's liability is excluded.</p>
+            <p>7.2 The Provider assumes no liability for outages of third-party interfaces (such as Telegram, Discord, or external AI APIs) that are beyond the Provider's control.</p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">8. Privacy Policy</h3>
+            <p>8.1 The Provider processes the Customer's personal data exclusively for the fulfillment of contractual obligations. The data protection regulations can be viewed in the Privacy Policy.</p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">9. Final Provisions</h3>
+            <p>9.1 The law of the Federal Republic of Germany shall apply.</p>
+            <p>9.2 Should individual provisions of these ToS be invalid, this shall not affect the validity of the remaining provisions.</p>
+            <p>9.3 The place of jurisdiction is the Provider's registered office, provided the Customer is a merchant, a legal entity under public law, or a special fund under public law.</p>
+            
+            {% else %}
             <h3 style="color: var(--text-primary); margin-top: 2rem;">1. Geltungsbereich</h3>
             <p>1.1 Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge, die über die Webseite des <strong>Bot Butler</strong> Dienstes zwischen <strong>McMoe’s Solutions, Inhaber Markus Wirtz</strong> (nachfolgend „Anbieter“) und den Kunden (nachfolgend „Kunde“) geschlossen werden.</p>
             <p>1.2 Abweichende oder entgegenstehende Bedingungen des Kunden finden keine Anwendung, es sei denn, der Anbieter hat ihrer Geltung ausdrücklich zugestimmt.</p>
@@ -47,6 +87,7 @@
             <p>9.1 Es gilt das Recht der Bundesrepublik Deutschland.</p>
             <p>9.2 Sollten einzelne Bestimmungen dieser AGB unwirksam sein, so bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
             <p>9.3 Gerichtsstand ist der Sitz des Anbieters, sofern der Kunde Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches Sondervermögen ist.</p>
+            {% endif %}
         </div>
     </div>
 </section>

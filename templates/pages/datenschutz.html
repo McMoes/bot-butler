@@ -4,11 +4,85 @@
 {% block title %}{% trans "Privacy Policy" %} | Bot Butler{% endblock %}
 
 {% block content %}
+{% get_current_language as LANGUAGE_CODE %}
 <section class="features-section" style="padding-top: 6rem; padding-bottom: 4rem;">
     <div class="features-container" style="max-width: 800px; text-align: left; background: var(--glass-bg); padding: 3rem; border-radius: 16px; border: 1px solid var(--border-subtle);">
         <h1 style="margin-bottom: 2rem; font-size: 2.5rem; text-align: center;"><span class="gradient-text">{% trans "Datenschutzerklärung" %}</span></h1>
         
         <div class="legal-content" style="color: var(--text-secondary); line-height: 1.8;">
+            {% if LANGUAGE_CODE == 'en' %}
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">1. Controller</h3>
+            <p>The controller responsible for data processing on this website is:</p>
+            <p>
+                <strong>McMoe’s Solutions, owner Markus Wirtz</strong><br>
+                Dünner Str. 47, 41066 Mönchengladbach<br>
+                support@mcmoe.de<br>
+                (hereinafter "we" or "us").
+            </p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">2. Collection and Storage of Personal Data as well as Nature and Purpose of its Use</h3>
+            
+            <h4 style="color: var(--text-primary); margin-top: 1.5rem;">2.1 When Visiting the Website</h4>
+            <p>When you visit our website, the browser used on your device automatically sends information to the server of our website. This information is temporarily stored in a so-called log file. The following information is collected without your intervention and stored until automated deletion:</p>
+            <ul style="list-style-type: disc; margin-left: 2rem; margin-bottom: 1rem;">
+                <li>IP address of the requesting computer,</li>
+                <li>Date and time of access,</li>
+                <li>Name and URL of the retrieved file,</li>
+                <li>Website from which access is made (Referrer-URL),</li>
+                <li>Browser used and, if applicable, the operating system of your computer as well as the name of your access provider.</li>
+            </ul>
+            <p>The mentioned data will be processed by us for the following purposes:</p>
+            <ul style="list-style-type: disc; margin-left: 2rem; margin-bottom: 1rem;">
+                <li>Ensuring a smooth connection setup of the website,</li>
+                <li>Ensuring a comfortable use of our website,</li>
+                <li>Evaluation of system security and stability, and</li>
+                <li>for further administrative purposes.</li>
+            </ul>
+            <p>The legal basis for data processing is Art. 6 (1) sentence 1 lit. f GDPR. Our legitimate interest follows from the data collection purposes listed above. Under no circumstances do we use the collected data for the purpose of drawing conclusions about your person.</p>
+
+            <h4 style="color: var(--text-primary); margin-top: 1.5rem;">2.2 When Using Our Services</h4>
+            <p>If you purchase our Bot-as-a-Service capabilities (purchase or subscription) on our website via the AI Bot Architect or create a customer account, we collect the following personal data:</p>
+            <ul style="list-style-type: disc; margin-left: 2rem; margin-bottom: 1rem;">
+                <li>First name, Last name,</li>
+                <li>Email address,</li>
+                <li>Project and billing data.</li>
+            </ul>
+            <p>This data is required to fulfill the contract, provision your dashboard, and configure the purchased bot for you. The processing of the data takes place on the basis of Art. 6 (1) sentence 1 lit. b GDPR for the fulfillment of the contract.</p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">3. Disclosure of Data</h3>
+            <p>A transfer of your personal data to third parties for purposes other than those listed below does not take place. We only share your personal data with third parties if:</p>
+            <ul style="list-style-type: disc; margin-left: 2rem; margin-bottom: 1rem;">
+                <li>you have given your express consent to this pursuant to Art. 6 (1) sentence 1 lit. a GDPR,</li>
+                <li>the disclosure pursuant to Art. 6 (1) sentence 1 lit. f GDPR is necessary for the assertion, exercise or defense of legal claims and there is no reason to assume that you have an overriding legitimate interest in not disclosing your data,</li>
+                <li>in the event that there is a legal obligation for the disclosure pursuant to Art. 6 (1) sentence 1 lit. c GDPR, and</li>
+                <li>this is legally permissible and necessary for the processing of contractual relationships (e.g., payment processors like Stripe) with you pursuant to Art. 6 (1) sentence 1 lit. b GDPR.</li>
+            </ul>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">4. Storage Duration</h3>
+            <p>Your personal data will only be stored as long as necessary to fulfill the contract or as long as we have a legitimate interest in further storage. After full processing of the contract or deletion of your customer account, your data will be deleted, provided there are no statutory retention requirements to the contrary.</p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">5. Rights of Data Subjects</h3>
+            <p>You have the right:</p>
+            <ul style="list-style-type: disc; margin-left: 2rem; margin-bottom: 1rem;">
+                <li>pursuant to Art. 15 GDPR, to request information about your personal data processed by us,</li>
+                <li>pursuant to Art. 16 GDPR, to demand immediate correction of inaccurate or completion of your personal data stored by us,</li>
+                <li>pursuant to Art. 17 GDPR, to request the deletion of your personal data stored by us, unless processing is necessary to fulfill a legal obligation,</li>
+                <li>pursuant to Art. 18 GDPR, to demand the restriction of the processing of your personal data,</li>
+                <li>pursuant to Art. 20 GDPR, to receive your personal data, which you have provided to us, in a structured, common, and machine-readable format or to request transmission to another controller,</li>
+                <li>pursuant to Art. 7 (3) GDPR, to revoke your once given consent to us at any time, and</li>
+                <li>pursuant to Art. 77 GDPR, to complain to a supervisory authority.</li>
+            </ul>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">6. Right to Object</h3>
+            <p>If your personal data are processed on the basis of legitimate interests pursuant to Art. 6 (1) sentence 1 lit. f GDPR, you have the right to object to the processing of your personal data pursuant to Art. 21 GDPR, provided that there are reasons for this arising from your particular situation.</p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">7. Data Security</h3>
+            <p>During your website visit, we use the widespread SSL (Secure Socket Layer) procedure in conjunction with the highest level of encryption supported by your browser.</p>
+
+            <h3 style="color: var(--text-primary); margin-top: 2rem;">8. Actuality and Changes to this Privacy Policy</h3>
+            <p>This privacy policy is currently valid and was last updated in {% now "F Y" %}. Due to the further development of our website or due to changed legal or regulatory requirements, it may become necessary to change this privacy policy.</p>
+
+            {% else %}
             <h3 style="color: var(--text-primary); margin-top: 2rem;">1. Verantwortlicher</h3>
             <p>Verantwortlich für die Datenverarbeitung auf dieser Webseite ist:</p>
             <p>
@@ -79,6 +153,7 @@
 
             <h3 style="color: var(--text-primary); margin-top: 2rem;">8. Aktualität und Änderung dieser Datenschutzerklärung</h3>
             <p>Diese Datenschutzerklärung ist aktuell gültig und hat den Stand {% now "F Y" %}. Durch die Weiterentwicklung unserer Webseite oder aufgrund geänderter gesetzlicher bzw. behördlicher Vorgaben kann es notwendig werden, diese Datenschutzerklärung zu ändern.</p>
+            {% endif %}
         </div>
     </div>
 </section>
