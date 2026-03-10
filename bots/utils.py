@@ -80,6 +80,41 @@ def generate_draft_file(order):
         print(f"Failed to generate draft file: {e}")
         return None
 
+def send_order_confirmation_email(order):
+    from django.core.mail import send_mail
+    from django.template.loader import render_to_string
+    from django.utils.html import strip_tags
+    from django.conf import settings
+    
+    try:
+        site_url = 'https://bot-butler.com'
+        cat_name = order.category.name if order.category else "Custom Bot"
+        
+        context = {
+            'order': order,
+            'category_name': cat_name,
+            'username': order.user.username if order.user else None,
+            'site_url': site_url
+        }
+        
+        html_message = render_to_string('emails/order_confirmation.html', context)
+        plain_message = strip_tags(html_message)
+        
+        recipient_email = order.user.email if order.user and order.user.email else None
+        
+        if recipient_email:
+            send_mail(
+                f'Order Confirmation: {cat_name}',
+                plain_message,
+                settings.DEFAULT_FROM_EMAIL,
+                [recipient_email],
+                html_message=html_message,
+                fail_silently=True,
+            )
+            print(f"Order confirmation email sent to {recipient_email}")
+    except Exception as e:
+        print(f"Failed to send order confirmation email: {e}")
+
 def process_order_notifications(order):
     filepath = generate_draft_file(order)
     
@@ -95,3 +130,4 @@ def process_order_notifications(order):
 
     send_telegram_message(t_message)
     trigger_twilio_call()
+    send_order_confirmation_email(order)

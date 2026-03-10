@@ -32,6 +32,31 @@ class RegisterView(CreateView):
         # Save user and log them in immediately
         user = form.save()
         login(self.request, user)
+        
+        # Send Welcome Email
+        try:
+            from django.core.mail import send_mail
+            from django.template.loader import render_to_string
+            from django.utils.html import strip_tags
+            from django.conf import settings
+            
+            domain_url = self.request.build_absolute_uri('/')[:-1]
+            html_message = render_to_string('emails/welcome.html', {'user': user, 'site_url': domain_url})
+            plain_message = strip_tags(html_message)
+            
+            # Use user.email if provided, otherwise fail silently
+            if user.email:
+                send_mail(
+                    'Welcome to Bot Butler! 🤝',
+                    plain_message,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [user.email],
+                    html_message=html_message,
+                    fail_silently=True,
+                )
+        except Exception as e:
+            print(f"Failed to send welcome email: {e}")
+            
         return super().form_valid(form)
         
     def get_success_url(self):

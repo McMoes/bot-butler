@@ -1,0 +1,39 @@
+{% extends 'emails/base_email.html' %}
+{% load i18n %}
+
+{% block content %}
+<h2 style="color: #ffffff; margin-top: 0;">{% trans "Order Confirmation" %} 🎉</h2>
+
+<p>{% if username %}{% blocktrans %}Hi {{ username }},{% endblocktrans %}{% else %}{% trans "Hello," %}{% endif %}</p>
+
+<p>{% trans "Great news! We have successfully received your payment and are thrilled to welcome you." %}</p>
+
+<div class="data-box">
+    <h3 style="color: #2dd4bf; margin-top: 0;">{% trans "Your Order Details" %}</h3>
+    <p><strong>{% trans "Order ID:" %}</strong> {{ order.order_id }}</p>
+    <p><strong>{% trans "Bot Type:" %}</strong> {{ category_name }}</p>
+    <p><strong>{% trans "Total Setup Price:" %}</strong> {{ order.total_price }} €</p>
+    {% if order.is_hosted %}
+    <p><strong>{% trans "Hosting Plan:" %}</strong> {% trans "Managed Hosting" %} ({{ order.monthly_fee }} €/mo)</p>
+    {% else %}
+    <p><strong>{% trans "Hosting Plan:" %}</strong> {% trans "Self-Hosted (Code Only)" %}</p>
+    {% endif %}
+    {% if order.consulting_requested %}
+    <p><strong>{% trans "Consulting Call:" %}</strong> {% trans "Included. We will contact you soon to schedule." %}</p>
+    {% endif %}
+</div>
+
+<p>{% trans "Our lead developers have received your specifications and are already reviewing them. We will begin crafting your custom Bot Butler shortly." %}</p>
+
+<p>{% trans "You can track the progress of your bot, request feature adjustments, and manage your billing directly in your dashboard:" %}</p>
+
+<div style="text-align: center;">
+    <a href="{{ site_url }}/bot/{{ order.id }}/" class="btn-primary" style="display: inline-block;">{% trans "View Order Status" %}</a>
+</div>
+
+<p style="margin-top: 30px;">
+    {% trans "Thank you for choosing Bot Butler!" %}<br><br>
+    {% trans "Best regards," %}<br>
+    {% trans "Your Bot Butler Team" %}
+</p>
+{% endblock %}
