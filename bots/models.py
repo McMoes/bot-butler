@@ -79,3 +79,17 @@ class BotAdjustment(models.Model):
 
     def __str__(self):
         return f"Adj for {self.order.order_id} at {self.created_at}"
+
+class RateLimitTracker(models.Model):
+    ip_address = models.GenericIPAddressField(_("IP Address"), db_index=True)
+    session_key = models.CharField(_("Session Key"), max_length=40, blank=True, null=True, db_index=True)
+    message_count = models.IntegerField(_("Message Count"), default=0)
+    last_interaction = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = _("Rate Limit Tracker")
+        verbose_name_plural = _("Rate Limit Trackers")
+        
+    def __str__(self):
+        return f"{self.ip_address} - {self.message_count} msgs"

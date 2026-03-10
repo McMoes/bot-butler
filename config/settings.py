@@ -27,6 +27,7 @@ CSRF_TRUSTED_ORIGINS = ['https://bot-butler.ai', 'https://www.bot-butler.ai', 'h
 
 GEMINI_API_KEY_SALES = os.environ.get('GEMINI_API_KEY_SALES', '')
 GEMINI_API_KEY_UPSELL = os.environ.get('GEMINI_API_KEY_UPSELL', '')
+GEMINI_API_KEY_SUPPORT = os.environ.get('GEMINI_API_KEY_SUPPORT', '')
 
 # Application definition
 INSTALLED_APPS = [

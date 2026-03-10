@@ -237,3 +237,59 @@ class BotAdjustmentView(LoginRequiredMixin, View):
         except Exception as e:
             import traceback; traceback.print_exc()
             return JsonResponse({'error': str(e)}, status=500)
+
+from .models import RateLimitTracker
+from django.utils import timezone
+from django.db import models
+import datetime
+
+@method_decorator(csrf_exempt, name='dispatch')
+class SupportChatWebhookView(View):
+    def get_client_ip(self, request):
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        return ip
+
+    def post(self, request, *args, **kwargs):
+        ip = self.get_client_ip(request)
+        one_hour_ago = timezone.now() - datetime.timedelta(hours=1)
+        
+        # Rate Limit Check
+        tracker, created = RateLimitTracker.objects.get_or_create(
+            ip_address=ip,
+            defaults={'message_count': 0}
+        )
+        
+        if tracker.last_interaction < one_hour_ago:
+            tracker.message_count = 0
+            
+        tracker.message_count += 1
+        tracker.save()
+        
+        if tracker.message_count > 20:
+            return JsonResponse({'reply': 'Du hast das Limit von 20 Nachrichten pro Stunde erreicht. Bitte probiere unseren KI Architekten auf der Seite aus!'})
+            
+        # Global Killswitch check
+        today = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0)
+        daily_messages = RateLimitTracker.objects.filter(last_interaction__gte=today).aggregate(models.Sum('message_count'))['message_count__sum'] or 0
+        
+        if daily_messages > 1000: # ~2 Euros limit rough estimation
+            return JsonResponse({'reply': 'Der Support-Chat ist für heute wegen Wartungsarbeiten geschlossen. Bitte nutze unseren Architekten!'})
+
+        try:
+            data = json.loads(request.body)
+            history = data.get('history', [])
+            
+            if not history:
+                return JsonResponse({'error': 'Invalid data'}, status=400)
+                
+            from .ai_utils import get_landing_page_support_response
+            ai_reply = get_landing_page_support_response(history)
+            
+            return JsonResponse({'success': True, 'reply': ai_reply})
+        except Exception as e:
+            import traceback; traceback.print_exc()
+            return JsonResponse({'error': str(e)}, status=500)

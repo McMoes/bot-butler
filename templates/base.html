@@ -16,6 +16,7 @@
     
     <!-- Custom Styles -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/support_widget.css' %}">
 </head>
 <body class="dark-theme">
     <!-- Navbar -->
@@ -86,5 +87,8 @@
     </footer>
 
     {% block extra_js %}{% endblock %}
+    
+    <!-- AI Support Chat Widget -->
+    <script src="{% static 'js/support_widget.js' %}"></script>
 </body>
 </html>

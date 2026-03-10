@@ -9,6 +9,7 @@ logger = logging.getLogger(__name__)
 # Initialize clients (ensure keys are present)
 sales_key = getattr(settings, 'GEMINI_API_KEY_SALES', None)
 upsell_key = getattr(settings, 'GEMINI_API_KEY_UPSELL', None)
+support_key = getattr(settings, 'GEMINI_API_KEY_SUPPORT', None)
 
 # Base model configuration
 generation_config = {
@@ -130,3 +131,56 @@ def get_upsell_chat_response(chat_history: list, order) -> str:
     except Exception as e:
         logger.error(f"Gemini Upsell Chat Request Failed: {e}")
         return "Entschuldigung, der Support-Chat ist derzeit nicht erreichbar. Wir arbeiten bereits daran!"
+
+def get_landing_page_support_response(chat_history: list) -> str:
+    """
+    Handles the free on-page support widget.
+    chat_history format: [{"role": "user"|"model", "parts": ["text"]}]
+    """
+    if not support_key:
+        logger.error("GEMINI_API_KEY_SUPPORT is not configured.")
+        return "Systemfehler: Support API Key fehlt."
+        
+    genai.configure(api_key=support_key)
+    
+    system_instruction = """
+    Du bist der offizielle Support-Bot von 'Bot Butler' auf der Landingpage.
+    Deine Aufgabe ist es, Fragen von Interessenten zu unserem Service zu beantworten.
+    Wir bauen professionelle KIs (Telegram Bots, Discord Bots, Web-Chatbots).
+    Kunden haben die Wahl zwischen Hosting-Abonnements:
+    - Code Only (Self-Hosted): 0€/Monat
+    - Starter Hosted: 29€/Monat (500 Nachrichten)
+    - Pro Hosted: 59€/Monat (2.500 Nachrichten)
+    - Ultra Hosted: 99€/Monat (10.000 Nachrichten)
+    
+    WICHTIGE REGELN DIESES BOT:
+    1. Du schreibst und programmierst NIEMALS Code. Lehne ALLE Programmierfragen strikt ab.
+    2. Wenn jemand allgemeinen Nonsens fragt ("Schreibe ein Gedicht", "Wer ist der Präsident"), weise ihn höflich darauf hin, dass du NUR Fragen zum Bot Butler Service beantwortest.
+    3. Sei freundlich, geduldig und verkaufsorientiert (per 'Du'). Formatiere deine Antworten sauber. Antworte in einfachem HTML format (nutze <strong> für Fettdruck und <br> für Zeilenumbrüche).
+    4. Halte die Antworten kurz und präzise. Biete als nächsten Schritt an, unseren Bot-Architekten auf der Webseite aufzurufen.
+    """
+    
+    try:
+        model = genai.GenerativeModel(
+            model_name="gemini-2.5-flash",
+            generation_config=generation_config,
+            system_instruction=system_instruction,
+        )
+        
+        # Limit context window to last 10 messages strictly
+        if len(chat_history) > 10:
+            chat_history = chat_history[-10:]
+            
+        if chat_history and chat_history[-1]['role'] == 'user':
+            latest_prompt = chat_history.pop()['parts'][0]
+        else:
+            return "Fehler: Keine Benutzereingabe."
+            
+        chat_session = model.start_chat(history=chat_history)
+        response = chat_session.send_message(latest_prompt)
+        
+        return response.text
+        
+    except Exception as e:
+        logger.error(f"Support Chat Failed: {e}")
+        return "Entschuldigung, unsere Systeme sind gerade überlastet."
