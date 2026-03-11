@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}Admin: Ticket Management | Bot Butler{% endblock %}
+
+{% block content %}
+<section class="hero" style="padding-top: 120px; padding-bottom: 40px; min-height: auto;">
+    <h1>{% trans "Admin" %} <span class="gradient-text">{% trans "Command Center." %}</span></h1>
+    <p>{% trans "Manage global support workflows and infrastructure requests." %}</p>
+</section>
+
+<section class="dashboard-section" style="max-width: 1400px; margin: 0 auto; padding: 2rem;">
+    <div style="margin-top: 4rem;">
+    <!-- Main Content -->
+    <div style="width: 100%;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <h1 style="color: var(--text-primary); font-family: var(--font-heading); margin: 0; font-size: 2rem; display: flex; align-items: center; gap: 0.8rem;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> 
+                Ticket Management (Admin)
+            </h1>
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="glass-card" style="padding: 1rem; color: #2dd4bf; border-color: rgba(45, 212, 191, 0.3); background: rgba(45, 212, 191, 0.05); margin-bottom: 1.5rem;">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="glass-card" style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                <thead>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <th style="padding: 1rem; color: var(--text-secondary); font-weight: normal;">ID</th>
+                        <th style="padding: 1rem; color: var(--text-secondary); font-weight: normal;">Kunde</th>
+                        <th style="padding: 1rem; color: var(--text-secondary); font-weight: normal;">Betreff</th>
+                        <th style="padding: 1rem; color: var(--text-secondary); font-weight: normal;">Status</th>
+                        <th style="padding: 1rem; color: var(--text-secondary); font-weight: normal;">Letztes Update</th>
+                        <th style="padding: 1rem; color: var(--text-secondary); font-weight: normal; text-align: right;">Aktion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ticket in tickets %}
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <td style="padding: 1rem; color: var(--text-secondary);">#{{ ticket.id }}</td>
+                        <td style="padding: 1rem; color: #fff;">
+                            {{ ticket.user.username|default:"Unbekannt" }}
+                            {% if ticket.user.email %}
+                            <br><small style="color: rgba(255,255,255,0.5); font-size: 0.8rem;">{{ ticket.user.email }}</small>
+                            {% endif %}
+                        </td>
+                        <td style="padding: 1rem; color: #fff; font-weight: 500;">{{ ticket.subject }}</td>
+                        <td style="padding: 1rem;">
+                            {% if ticket.status == 'OPEN' %}
+                                <span style="background: rgba(245, 158, 11, 0.1); color: #f59e0b; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid rgba(245, 158, 11, 0.2);">Kundenantwort / Neu</span>
+                            {% elif ticket.status == 'ANSWERED' %}
+                                <span style="background: rgba(45, 212, 191, 0.1); color: #2dd4bf; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid rgba(45, 212, 191, 0.2); opacity: 0.7;">Wartet auf Kunde</span>
+                            {% else %}
+                                <span style="background: rgba(255, 255, 255, 0.1); color: rgba(255,255,255,0.7); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid rgba(255, 255, 255, 0.2);">Geschlossen</span>
+                            {% endif %}
+                        </td>
+                        <td style="padding: 1rem; color: var(--text-secondary);">{{ ticket.updated_at|date:"d.m.Y H:i" }}</td>
+                        <td style="padding: 1rem; text-align: right;">
+                            <a href="{% url 'support:ticket_detail' ticket.id %}" class="btn-outline" style="padding: 0.4rem 1rem; font-size: 0.85rem; display: inline-block;">Bearbeiten</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" style="padding: 3rem; text-align: center; color: #2dd4bf;">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: 0 auto 1rem;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            Alle Tickets sind beantwortet und bearbeitet! Gute Arbeit.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}Ticket #{{ ticket.id }} | Bot Butler{% endblock %}
+
+{% block content %}
+<section class="hero" style="padding-top: 120px; padding-bottom: 40px; min-height: auto;">
+    <h1>{% trans "Your" %} <span class="gradient-text">{% trans "Command Center." %}</span></h1>
+    <p>{% trans "Manage your active bots, view invoices, and request custom integrations." %}</p>
+</section>
+
+<section class="dashboard-section" style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+    <div class="support-layout">
+    <!-- Sidebar / Meta -->
+    <div class="support-sidebar">
+        <a href="{% url 'support:ticket_list' %}" class="btn-outline" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; margin-bottom: 1.5rem; text-decoration: none;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Zurück zur Liste
+        </a>
+        <div class="glass-card" style="padding: 1.5rem;">
+            <h6 style="color: #fff; margin-bottom: 1.5rem; font-size: 1.1rem;">Ticket-Status</h6>
+            
+            {% if ticket.status == 'OPEN' %}
+                <div style="background: rgba(245, 158, 11, 0.1); color: #f59e0b; padding: 0.8rem; border-radius: 8px; font-weight: 600; text-align: center; border: 1px solid rgba(245, 158, 11, 0.2); margin-bottom: 2rem;">Offen</div>
+            {% elif ticket.status == 'ANSWERED' %}
+                <div style="background: rgba(45, 212, 191, 0.1); color: #2dd4bf; padding: 0.8rem; border-radius: 8px; font-weight: 600; text-align: center; border: 1px solid rgba(45, 212, 191, 0.2); margin-bottom: 2rem;">Beantwortet</div>
+            {% else %}
+                <div style="background: rgba(255, 255, 255, 0.1); color: rgba(255,255,255,0.7); padding: 0.8rem; border-radius: 8px; font-weight: 600; text-align: center; border: 1px solid rgba(255, 255, 255, 0.2); margin-bottom: 2rem;">Geschlossen</div>
+            {% endif %}
+            
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.2rem;">Erstellt am:</p>
+            <p style="color: #fff; margin-bottom: 1.5rem;">{{ ticket.created_at|date:"d.m.Y H:i" }}</p>
+            
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.2rem;">Letztes Update:</p>
+            <p style="color: #fff; margin-bottom: 0;">{{ ticket.updated_at|date:"d.m.Y H:i" }}</p>
+
+            {% if ticket.status != 'CLOSED' and not request.user.is_superuser %}
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 2rem; padding-top: 2rem;">
+                <form action="{% url 'support:ticket_close' ticket.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); padding: 0.6rem 1rem; border-radius: 8px; width: 100%; cursor: pointer; transition: all 0.2s;" onclick="return confirm('Möchtest du dieses Ticket wirklich schließen?');" onmouseover="this.style.background='rgba(239, 68, 68, 0.2)'" onmouseout="this.style.background='rgba(239, 68, 68, 0.1)'">
+                        Ticket schließen
+                    </button>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="support-content">
+        <h1 style="color: var(--text-primary); font-family: var(--font-heading); margin-bottom: 2rem;">{{ ticket.subject }}</h1>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="glass-card" style="padding: 1rem; color: #2dd4bf; border-color: rgba(45, 212, 191, 0.3); background: rgba(45, 212, 191, 0.05); margin-bottom: 1.5rem;">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <!-- Message History -->
+        <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 3rem;">
+            {% for msg in ticket.messages.all %}
+                {% if msg.sender == request.user %}
+                <!-- Own Message -->
+                <div class="glass-card" style="padding: 1.5rem; max-width: 85%; align-self: flex-end; background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.2);">
+                    <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 0.8rem; gap: 0.8rem;">
+                        <small style="color: var(--text-secondary);">{{ msg.created_at|date:"d.m.Y H:i" }}</small>
+                        <strong style="color: #3b82f6;">Du</strong>
+                    </div>
+                    <p style="color: #fff; margin: 0; white-space: pre-wrap; line-height: 1.6; text-align: right;">{{ msg.message }}</p>
+                </div>
+                {% else %}
+                <!-- Incoming Message (Support) -->
+                <div class="glass-card" style="padding: 1.5rem; max-width: 85%; align-self: flex-start;">
+                    <div style="display: flex; justify-content: flex-start; align-items: center; margin-bottom: 0.8rem; gap: 0.8rem;">
+                        <strong style="color: #fff;">{% if msg.sender.is_superuser %}Bot Butler Support{% else %}{{ msg.sender.first_name|default:"Kunde" }}{% endif %}</strong>
+                        <small style="color: var(--text-secondary);">{{ msg.created_at|date:"d.m.Y H:i" }}</small>
+                    </div>
+                    <p style="color: #fff; margin: 0; white-space: pre-wrap; line-height: 1.6;">{{ msg.message }}</p>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        {% if ticket.status != 'CLOSED' %}
+        <!-- Reply Form -->
+        <div class="glass-card" style="padding: 2rem;">
+            <h3 style="color: #fff; margin-bottom: 1.5rem; font-size: 1.3rem;">Antworten</h3>
+            <form method="post">
+                {% csrf_token %}
+                <div style="margin-bottom: 1.5rem;">
+                    {{ reply_form.message }}
+                    {% if reply_form.message.errors %}
+                        <div style="color: #ef4444; font-size: 0.85rem; margin-top: 0.5rem;">{{ reply_form.message.errors }}</div>
+                    {% endif %}
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 1rem;">
+                    {% if request.user.is_superuser %}
+                        <button type="submit" formaction="{% url 'support:ticket_close' ticket.id %}" class="btn-outline" style="color: #ef4444; border-color: rgba(239, 68, 68, 0.4);" onclick="return confirm('Möchtest du antworten ODER das Ticket nur schließen? Dieser Button schließt das Ticket.');">Ticket manuell schließen</button>
+                    {% endif %}
+                    <button type="submit" class="btn-primary" style="padding: 0.8rem 2rem;">Senden</button>
+                </div>
+            </form>
+        </div>
+        {% else %}
+        <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 2rem; text-align: center; color: var(--text-secondary);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: 0 auto 1rem; opacity: 0.5;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            Dieses Ticket ist geschlossen. Du kannst nicht mehr darauf antworten. Bitte eröffne bei neuen Fragen ein neues Ticket.
+        </div>
+        {% endif %}
+    </div>
+</div>
+</section>
+<style>
+    form textarea { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1rem; color: #fff; width: 100%; box-sizing: border-box; font-family: inherit; }
+    form textarea:focus { outline: none; border-color: var(--brand-primary); }
+
+    .support-layout {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 3rem;
+        align-items: start;
+        margin-top: 4rem;
+    }
+    .support-sidebar {
+        width: 100%;
+    }
+    .support-content {
+        width: 100%;
+        min-width: 0;
+    }
+    
+    @media (max-width: 992px) {
+        .support-layout {
+            grid-template-columns: 1fr;
+            margin-top: 6rem;
+        }
+    }
+</style>
+{% endblock %}

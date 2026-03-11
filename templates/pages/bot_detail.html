@@ -83,7 +83,7 @@
                 {% for adj in bot.adjustments.all %}
                 <div class="chat-message {% if adj.is_from_user %}message-user{% else %}message-ai{% endif %}">
                     <strong>{% if adj.is_from_user %}You{% else %}Support Team{% endif %}:</strong>
-                    {{ adj.message }}
+                    {{ adj.message|safe }}
                     <div style="font-size: 0.75rem; color: #6b7280; margin-top: 0.5rem; text-align: right;">{{ adj.created_at|date:"d.m.Y H:i" }}</div>
                 </div>
                 {% endfor %}

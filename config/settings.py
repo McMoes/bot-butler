@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'bots',
     'pages',
     'blog',
+    'support',
 ]
 
 MIDDLEWARE = [

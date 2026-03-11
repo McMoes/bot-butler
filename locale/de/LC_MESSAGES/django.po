@@ -366,16 +366,16 @@ msgstr ""
 
 #: templates/pages/dashboard.html:6
 msgid "Your"
-msgstr ""
+msgstr "Dein"
 
 #: templates/pages/dashboard.html:6
 msgid "Command Center."
-msgstr ""
+msgstr "Command Center."
 
 #: templates/pages/dashboard.html:7
 msgid ""
 "Manage your active bots, view invoices, and request custom integrations."
-msgstr ""
+msgstr "Verwalte deine aktiven Bots, sieh dir Rechnungen an und beantrage individuelle Integrationen."
 
 #: templates/pages/dashboard.html:11
 msgid "My Bots"
@@ -1979,3 +1979,18 @@ msgstr ""
 
 #~ msgid "Allgemeine Geschäftsbedingungen"
 #~ msgstr "Allgemeine Geschäftsbedingungen"
+
+
+
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Manage global support workflows and infrastructure requests."
+msgstr "Verwalte globale Support-Workflows und Infrastruktur-Anfragen."
+
+msgid "Premium Support"
+msgstr "Premium Support"
+
+msgid "Blitzschnelle Reaktionszeiten und ein integriertes Ticketsystem direkt in deinem Dashboard für maximale Flexibilität."
+msgstr "Blitzschnelle Reaktionszeiten und ein integriertes Ticketsystem direkt in deinem Dashboard für maximale Flexibilität."

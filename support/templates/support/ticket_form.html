@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}Neues Ticket erstellen | Bot Butler{% endblock %}
+
+{% block content %}
+<section class="hero" style="padding-top: 120px; padding-bottom: 40px; min-height: auto;">
+    <h1>{% trans "Your" %} <span class="gradient-text">{% trans "Command Center." %}</span></h1>
+    <p>{% trans "Manage your active bots, view invoices, and request custom integrations." %}</p>
+</section>
+
+<section class="dashboard-section" style="max-width: 800px; margin: 0 auto; padding: 2rem;">
+    <div style="margin-top: 4rem;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+        <h1 style="color: var(--text-primary); font-family: var(--font-heading); margin: 0; font-size: 2rem;">Neues Ticket</h1>
+        <a href="{% url 'support:ticket_list' %}" class="btn-outline" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Zurück
+        </a>
+    </div>
+
+    <div class="glass-card" style="padding: 3rem;">
+        <p style="color: var(--text-secondary); margin-bottom: 2.5rem; line-height: 1.6;">
+            Beschreibe dein Anliegen so genau wie möglich. Unser Support-Team (McMoe) wird sich schnellstmöglich darum kümmern.
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+            
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; color: #fff; font-weight: 500; margin-bottom: 0.5rem;">Betreff</label>
+                {{ form.subject }}
+                {% if form.subject.errors %}
+                    <div style="color: #ef4444; font-size: 0.85rem; margin-top: 0.5rem;">{{ form.subject.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div style="margin-bottom: 2.5rem;">
+                <label style="display: block; color: #fff; font-weight: 500; margin-bottom: 0.5rem;">Deine Nachricht</label>
+                {{ form.initial_message }}
+                {% if form.initial_message.errors %}
+                    <div style="color: #ef4444; font-size: 0.85rem; margin-top: 0.5rem;">{{ form.initial_message.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; gap: 1rem;">
+                <a href="{% url 'support:ticket_list' %}" class="btn-outline" style="text-decoration: none; padding: 0.8rem 2rem;">Abbrechen</a>
+                <button type="submit" class="btn-primary" style="padding: 0.8rem 2rem;">Ticket absenden</button>
+            </div>
+        </form>
+    </div>
+    </div>
+</section>
+
+<style>
+    form input[type="text"], form textarea { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1rem; color: #fff; width: 100%; box-sizing: border-box; font-family: inherit; }
+    form input[type="text"]:focus, form textarea:focus { outline: none; border-color: var(--brand-primary); }
+</style>
+{% endblock %}
